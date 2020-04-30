@@ -6,13 +6,15 @@ In project root run the following:
 
 `echo API_KEY='"{API_KEY}"' > .env`
 
-Replacing **{API_KEY}** with a valid key for [Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
+Replacing **{API_KEY}** with a valid api key created at the [Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
 
 Run `npm i`
 
 ## Run & build
 
 Run `npm start`
+
+Browse to [GraphQL Playground](http://localhost:4000/) running locally and test by running the following queries exposed below.
 
 ## GraphQL Queries
 
