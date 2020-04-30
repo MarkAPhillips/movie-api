@@ -5,8 +5,7 @@ import { ENV_VARS, BASE_URL } from './constants';
 
 //Example API call
 // https://developers.themoviedb.org/3/trending/get-trending
-// https://api.themoviedb.org/3/trending/movie/day?api_key=ea47507794900a64810699815ba52020
-
+// https://api.themoviedb.org/3/trending/movie/day?api_key={API_KEY}
 
 const resolvers = {
     Query: {
