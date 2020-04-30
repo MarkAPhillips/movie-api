@@ -2,12 +2,20 @@ const { gql } = require('apollo-server');
 
 export const typeDefs = gql`
     type Query {
-        trending: [Movie!]!
+        trending: [TrendingMovie!]!
+        popular: [PopularMovie!]!
     }
 
-    type Movie {
+    type TrendingMovie {
         id: ID!
         title: String!
         overview: String!
+    }
+
+    type PopularMovie {
+        id: ID!
+        title: String!
+        overview: String!
+        vote_average: Float!
     }
 `;
