@@ -3,10 +3,6 @@ import fetch from 'node-fetch';
 import { typeDefs } from './schema';
 import { ENV_VARS, BASE_URL } from './constants';
 
-//Example API call
-// https://developers.themoviedb.org/3/trending/get-trending
-// https://api.themoviedb.org/3/trending/movie/day?api_key={API_KEY}
-
 const resolvers = {
     Query: {
        trending: () => {
