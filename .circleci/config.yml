@@ -9,7 +9,7 @@ jobs:
 
       - run:
           name : Build Docker Image
-          command: docker build -t movie-api:$CIRCLE_SHAI
+          command: docker build -t movie-api:$CIRCLE_SHA1 .
       - run:
           name: Deploy to Heroku
           command: |
