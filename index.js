@@ -17,7 +17,7 @@ const resolvers = {
         });
        },
        popular: () => {
-        return fetch(`${BASE_URL}/movie/popular?api_key=ea47507794900a64810699815ba52020&language=en-US&page=1`)
+        return fetch(`${BASE_URL}/movie/popular?api_key=${ENV_VARS.API_KEY}&language=en-US&page=1`)
         .then(res => res.json())
         .then(({ results }) => {
             return results.map((item) => ({
