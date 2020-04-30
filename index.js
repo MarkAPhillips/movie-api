@@ -15,7 +15,19 @@ const resolvers = {
                 overview: item.overview, 
             }));
         });
-       } 
+       },
+       popular: () => {
+        return fetch(`${BASE_URL}/movie/popular?api_key=ea47507794900a64810699815ba52020&language=en-US&page=1`)
+        .then(res => res.json())
+        .then(({ results }) => {
+            return results.map((item) => ({
+             id: item.id,
+             title: item.title,
+             overview: item.overview,
+             vote_average: item.vote_average
+         }));
+        });
+        }
     }
 };
 
