@@ -12,4 +12,4 @@ export const handleResponse = (res) => {
         });
 }
 
-export const handleError = err => console.log(`Unhandled error ${JSON.stringify(err)}`);
+export const handleError = (err, url) => console.log(`Unhandled error connecting to ${url}  - ${err || 'Unknown'}`);

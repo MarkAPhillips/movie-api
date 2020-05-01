@@ -13,7 +13,7 @@ export const trending = () => {
          overview: item.overview, 
          }));
      })
-    .catch(handleError);
+     .catch(err => handleError(err, url));
 };
 
 export const popular = () => {
@@ -28,5 +28,5 @@ export const popular = () => {
                 vote_average: item.vote_average
                 }));
             })
-        .catch(handleError);
+        .catch(err => handleError(err, url));
     };
