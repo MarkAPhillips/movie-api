@@ -1,7 +1,15 @@
 FROM node:12.6.0
+
 WORKDIR /app
-COPY package.json /app
+
+COPY package*.json ./
+
 RUN npm i
-COPY . /app
-CMD npm run build
-EXPOSE 4000
+
+COPY . .
+
+RUN useradd dockerUser
+
+USER dockerUser
+
+CMD [ "npm", "run", "start:dev" ]
