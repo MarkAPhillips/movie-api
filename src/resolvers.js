@@ -25,8 +25,21 @@ export const popular = () => {
                 id: item.id,
                 title: item.title,
                 overview: item.overview,
-                vote_average: item.vote_average
+                voteAverage: item.vote_average
                 }));
+            })
+        .catch(err => handleError(err, url));
+    };
+
+export const configuration = () => {
+    const url = `${BASE_URL}/configuration?api_key=${ENV_VARS.API_KEY}`
+    return fetch(url)
+        .then(handleResponse)
+        .then(({ images }) => {
+            return {
+                imageBaseUrl: images.secure_base_url,
+                imagePosterSizes: images.poster_sizes,
+                };
             })
         .catch(err => handleError(err, url));
     };

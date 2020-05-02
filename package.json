@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node -r dotenv/config index.js",
-    "start:dev": "babel-node -r dotenv/config index.js",
+    "start": "nodemon --exec babel-node -r dotenv/config src/index.js",
+    "start:dev": "babel-node src/index.js",
     "docker:build": "docker build -t movie-api .",
-    "docker:run": "docker run -e PORT=4000 -p 4000:4000 movie-api"
+    "docker:run": "docker run --env-file .env -p 4000:4000 movie-api"
   },
   "repository": {
     "type": "git",

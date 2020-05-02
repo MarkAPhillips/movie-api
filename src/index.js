@@ -1,13 +1,20 @@
 import { ApolloServer } from 'apollo-server';
 import { typeDefs } from './schema';
-import { trending, popular } from './resolvers';
+import { trending, popular, configuration } from './resolvers';
 
 const resolvers = {
+    Movie: {
+        __resolveType(movie){ 
+            return (movie.voteAverage) ? 'PopularMovie' : 'TrendingMovie';
+        },
+    },
     Query: {
        trending,
        popular,
+       configuration,
     },
 };
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
