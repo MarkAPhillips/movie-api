@@ -46,5 +46,30 @@ Runs the Docker VM and loads the application.
   }
 ```
 
+2. [Get Popular Movies](https://developers.themoviedb.org/3/movies/get-popular-movies)
+
+```
+ query {
+    popular {
+      id,
+      title,
+      overview,
+      voteAverage,
+    }
+  }
+```
+
+3. [Get Image Configuration](https://developers.themoviedb.org/3/configuration/get-api-configuration)
+
+```
+query {
+    configuration {
+      imageBaseUrl,
+      imagePosterSizes,
+    }
+  }
+
+```
+
 
 
