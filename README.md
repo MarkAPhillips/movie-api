@@ -1,5 +1,11 @@
 # Movie API
 
+## Introduction
+
+GraphQL wrapper for the The Movie Database API. 
+CI/CD using Circle CI
+Deployed to Heroku at [https://eu-movie-api.herokuapp.com/](https://eu-movie-api.herokuapp.com/)
+
 ## Installation
 
 In project root run the following:
