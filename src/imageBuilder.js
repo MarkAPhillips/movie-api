@@ -42,7 +42,7 @@ const buildImage = async (posterPath) => {
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
   }
-  return 'https://via.placeholder.com/154'; // TODO: Review placeholder image size
+  return 'https://via.placeholder.com/154x231';
 };
 
 export default buildImage;
