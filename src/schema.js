@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server');
 
-export const typeDefs = gql`
+const typeDefs = gql`
 
     interface Movie {
         id: ID!
@@ -32,3 +32,5 @@ export const typeDefs = gql`
         imagePosterSizes: [String!]!
     }
 `;
+
+export default typeDefs;

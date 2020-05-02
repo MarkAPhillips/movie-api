@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretest": "npm run lint",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node -r dotenv/config src/index.js",
     "start:dev": "babel-node src/index.js",
+    "lint": "eslint --quiet \"src/**\"",
     "docker:build": "docker build -t movie-api .",
     "docker:run": "docker run --env-file .env -p 4000:4000 movie-api"
   },
@@ -24,6 +26,7 @@
   "dependencies": {
     "apollo-server": "^2.12.0",
     "graphql": "^15.0.0",
+    "memory-cache": "^0.2.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
@@ -32,6 +35,9 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "nodemon": "^2.0.3"
   }
 }

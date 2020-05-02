@@ -6,6 +6,12 @@ jobs:
     working_directory: ~/movie-api
     steps:
       - checkout
+      - run: 
+          name: Install Node dependencies
+          command: npm i
+      - run:
+          name: Run linting and tests
+          command: npm test
       - run:
           name : Build Docker Image
           command: docker build -t movie-api:$CIRCLE_SHA1 .
