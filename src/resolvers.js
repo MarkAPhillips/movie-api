@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { ENV_VARS, BASE_URL } from './constants';
 import { handleResponse, handleError } from './fetchHandler';
+import buildImage from './imageBuilder';
 
 export const trending = () => {
   const url = `${BASE_URL}/trending/movie/day?api_key=${ENV_VARS.API_KEY}`;
@@ -10,6 +11,7 @@ export const trending = () => {
       id: item.id,
       title: item.title,
       overview: item.overview,
+      imageUrl: buildImage(item.poster_path, '__movie_api_trending__'),
     })))
     .catch((err) => handleError(err, url));
 };
@@ -24,16 +26,5 @@ export const popular = () => {
       overview: item.overview,
       voteAverage: item.vote_average,
     })))
-    .catch((err) => handleError(err, url));
-};
-
-export const configuration = () => {
-  const url = `${BASE_URL}/configuration?api_key=${ENV_VARS.API_KEY}`;
-  return fetch(url)
-    .then(handleResponse)
-    .then(({ images }) => ({
-      imageBaseUrl: images.secure_base_url,
-      imagePosterSizes: images.poster_sizes,
-    }))
     .catch((err) => handleError(err, url));
 };

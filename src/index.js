@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server';
 import typeDefs from './schema';
-import { trending, popular, configuration } from './resolvers';
+import { trending, popular } from './resolvers';
 
 const resolvers = {
   Movie: {
@@ -12,7 +12,6 @@ const resolvers = {
   Query: {
     trending,
     popular,
-    configuration,
   },
 };
 

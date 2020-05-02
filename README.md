@@ -50,6 +50,7 @@ Runs the Docker VM and loads the application.
       id,
       title,
       overview,
+      imageUrl,
     }
   }
 ```
@@ -65,18 +66,6 @@ Runs the Docker VM and loads the application.
       voteAverage,
     }
   }
-```
-
-3. [Get Image Configuration](https://developers.themoviedb.org/3/configuration/get-api-configuration)
-
-```
-query {
-    configuration {
-      imageBaseUrl,
-      imagePosterSizes,
-    }
-  }
-
 ```
 
 
