@@ -7,6 +7,7 @@ const DEFAULT_IMAGE_SIZE = 'w92';
 
 const configuration = () => {
   const url = `${BASE_URL}/configuration?api_key=${ENV_VARS.API_KEY}`;
+  console.log(`Connecting to ${url}`);
   return fetch(url)
     .then(handleResponse)
     .then(({ images }) => ({

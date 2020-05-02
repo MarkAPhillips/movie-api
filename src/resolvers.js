@@ -5,6 +5,7 @@ import buildImage from './imageBuilder';
 
 export const trending = () => {
   const url = `${BASE_URL}/trending/movie/day?api_key=${ENV_VARS.API_KEY}`;
+  console.log(`Connecting to ${url}`);
   return fetch(url)
     .then(handleResponse)
     .then(({ results }) => results.map((item) => ({
@@ -18,6 +19,7 @@ export const trending = () => {
 
 export const popular = () => {
   const url = `${BASE_URL}/movie/popular?api_key=${ENV_VARS.API_KEY}&language=en-US&page=1`;
+  console.log(`Connecting to ${url}`);
   return fetch(url)
     .then(handleResponse)
     .then(({ results }) => results.map((item) => ({
