@@ -46,7 +46,7 @@ Runs the Docker VM and loads the application.
 
 ```
  query {
-    trending {
+    trending (size: "w154") {
       id,
       title,
       overview,
@@ -59,14 +59,29 @@ Runs the Docker VM and loads the application.
 
 ```
  query {
-    popular {
+    popular(size: "w154") {
       id,
       title,
       overview,
+      imageUrl,
       voteAverage,
     }
   }
 ```
+
+3. [Get Image Configuration](https://developers.themoviedb.org/3/configuration/get-api-configuration)
+
+```
+query {
+    imageConfiguration {
+      baseUrl,
+      sizes,
+    }
+  }
+```
+`size` parameter can be obtained by querying the *imageConfiguration* end point and selecting an entry from the `sizes` property.
+
+If no `size` argument is passed this defaults to *original* 
 
 
 
