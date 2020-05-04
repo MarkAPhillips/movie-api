@@ -7,11 +7,18 @@ const typeDefs = gql`
         title: String!
         overview: String!
         voteAverage: Float!
+        imageUrl: String
+    }
+
+    type ImageConfiguration {
+        baseUrl: String!
+        sizes: [String!]!
     }
 
     type Query {
-        trending: [TrendingMovie!]!
-        popular: [PopularMovie!]!
+        trending(width: String = "original"): [TrendingMovie!]!
+        popular(width: String = "original"): [PopularMovie!]!
+        imageConfiguration: ImageConfiguration
     }
 
     type TrendingMovie implements Movie {
@@ -27,6 +34,8 @@ const typeDefs = gql`
         title: String!
         overview: String!
         voteAverage: Float!
+        imageUrl: String
+        
     }
 `;
 

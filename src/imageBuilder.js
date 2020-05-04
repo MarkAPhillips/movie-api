@@ -1,48 +1,30 @@
+/* eslint-disable import/prefer-default-export */
 import NodeCache from 'node-cache';
-import fetch from 'node-fetch';
-import { ENV_VARS, BASE_URL } from './constants';
-import { handleResponse, handleError } from './fetchHandler';
+import { imageConfiguration } from './resolvers/configuration';
 
-const DEFAULT_IMAGE_SIZE = 'w154';
 const CACHE_KEY = '__movie_api_config__';
+const CACHE_EXPIRE_SECONDS = 86400; // 1 day in seconds
 const cache = new NodeCache();
-
-// eslint-disable-next-line consistent-return
-const configuration = async () => {
-  const url = `${BASE_URL}/configuration?api_key=${ENV_VARS.API_KEY}`;
-  console.log(`Connecting to ${url}`);
-  try {
-    const response = await fetch(url);
-    const { images } = await handleResponse(response);
-    return ({
-      imageBaseUrl: images.secure_base_url,
-      imagePosterSizes: images.poster_sizes,
-    });
-  } catch (err) {
-    handleError(err, url);
-  }
-};
 
 /*
 Structure of image https://image.tmdb.org/t/p/w154/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 */
-const buildImage = async (posterPath) => {
+export const buildImage = async (posterPath, width) => {
   let cachedImageConfiguration = cache.get(CACHE_KEY);
   try {
     if (!cachedImageConfiguration) {
-      cachedImageConfiguration = await configuration();
-      cache.set(CACHE_KEY, cachedImageConfiguration);
+      cachedImageConfiguration = await imageConfiguration();
+      cache.set(CACHE_KEY, cachedImageConfiguration, CACHE_EXPIRE_SECONDS);
     }
-    const { imageBaseUrl, imagePosterSizes } = cachedImageConfiguration;
-    const imageSize = imagePosterSizes.find((item) => item === DEFAULT_IMAGE_SIZE);
-    if (imageSize || !posterPath) {
-      return `${imageBaseUrl}${imageSize}${posterPath}`;
+    const { baseUrl, sizes } = cachedImageConfiguration;
+    const size = sizes.find((item) => item === width);
+    if (size || !posterPath) {
+      return `${baseUrl}${size}${posterPath}`;
     }
-    console.log(`Image size ${DEFAULT_IMAGE_SIZE} not found in ${imagePosterSizes.toString()}`);
+    console.log(`Image size ${width} not found in ${sizes.toString()}`);
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
   }
+  // TODO: Review default output based on standard image
   return 'https://via.placeholder.com/154x231';
 };
-
-export default buildImage;
