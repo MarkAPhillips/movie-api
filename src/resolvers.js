@@ -19,6 +19,7 @@ export const trending = async () => {
         id: result.id,
         title: result.title,
         overview: result.overview,
+        voteAverage: result.vote_average,
         imageUrl,
       });
     }

@@ -6,6 +6,7 @@ const typeDefs = gql`
         id: ID!
         title: String!
         overview: String!
+        voteAverage: Float!
     }
 
     type Query {
@@ -17,6 +18,7 @@ const typeDefs = gql`
         id: ID!
         title: String!
         overview: String!
+        voteAverage: Float!
         imageUrl: String
     }
 
