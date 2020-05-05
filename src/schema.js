@@ -2,11 +2,15 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 
-    interface Movie {
+    type Movie {
         id: ID!
         title: String!
         overview: String!
         voteAverage: Float!
+        voteCount: Int!
+        releaseDate: String!
+        originalLanguage: String!
+        popularity: Float!
         imageUrl: String
     }
 
@@ -16,26 +20,9 @@ const typeDefs = gql`
     }
 
     type Query {
-        trending(width: String = "original"): [TrendingMovie!]!
-        popular(width: String = "original"): [PopularMovie!]!
+        trending(width: String = "original"): [Movie!]!
+        popular(width: String = "original"): [Movie!]!
         imageConfiguration: ImageConfiguration
-    }
-
-    type TrendingMovie implements Movie {
-        id: ID!
-        title: String!
-        overview: String!
-        voteAverage: Float!
-        imageUrl: String
-    }
-
-    type PopularMovie implements Movie {
-        id: ID!
-        title: String!
-        overview: String!
-        voteAverage: Float!
-        imageUrl: String
-        
     }
 `;
 

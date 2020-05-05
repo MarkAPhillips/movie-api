@@ -4,12 +4,6 @@ import { trending, popular } from './resolvers/movies';
 import { imageConfiguration } from './resolvers/configuration';
 
 const resolvers = {
-  Movie: {
-    // eslint-disable-next-line no-underscore-dangle
-    __resolveType(movie) {
-      return (movie.voteAverage) ? 'PopularMovie' : 'TrendingMovie';
-    },
-  },
   Query: {
     trending,
     popular,
