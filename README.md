@@ -42,7 +42,7 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 
 ```
  query {
-    trending (size: "w154") {
+    trending (width: "w154") {
       id,
       title,
       overview,
@@ -55,7 +55,7 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 
 ```
  query {
-    popular(size: "w154") {
+    popular(width: "w154") {
       id,
       title,
       overview,
