@@ -32,7 +32,7 @@ jobs:
           root: workspace
           paths: 
             - movie-api.tar
-            
+
   deploy_image:
     executor: movie-api-executor
     steps:
@@ -64,6 +64,6 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
+      - deploy_image:
           requires:
             - build_image
