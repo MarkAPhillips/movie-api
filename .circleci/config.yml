@@ -1,6 +1,10 @@
 version: 2.1
 jobs:
   build:
+    filters:
+      branches:
+        only:
+          - master
     machine:
       image: ubuntu-1604:202004-01
     working_directory: ~/movie-api
