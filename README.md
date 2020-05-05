@@ -43,10 +43,10 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 ```
  query {
     trending (width: "w154") {
-       id,
+      id,
       title,
       overview,
-    	imageUrl,
+      imageUrl,
       voteAverage,
       popularity,
       voteCount,
@@ -61,10 +61,10 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 ```
  query {
     popular(width: "w154") {
-       id,
+      id,
       title,
       overview,
-    	imageUrl,
+      imageUrl,
       voteAverage,
       popularity,
       voteCount,
