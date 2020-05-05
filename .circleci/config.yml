@@ -12,10 +12,10 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Install Node dependencies
+          name: Install Node Dependencies
           command: npm i
       - run:
-          name: Run linting and tests
+          name: Run Linting and Tests
           command: npm test
 
   build:
@@ -39,7 +39,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Deploy to Heroku
+          name: Deploy to Docker Image to Heroku
           command: |
             docker load -i /tmp/workspace/movie-api.tar
             docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
