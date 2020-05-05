@@ -30,15 +30,11 @@ Any changes to the code using this method force a rebuild
 
 Ensure [Docker](https://docs.docker.com/get-docker/) is installed locally.
 
-For macos review the following [documentation](https://runnable.com/docker/install-docker-on-macos)
+For MacOS review the following [documentation](https://runnable.com/docker/install-docker-on-macos)
 
-Run `npm run docker:build`
+Run `npm run start:docker`
 
-Creates a Docker image and tags it with `latest`
-
-Run `npm run docker:run` 
-
-Runs the Docker VM and loads the application.
+Browse to [GraphQL Playground](http://localhost:4000/) running locally
 
 ## GraphQL Queries
 

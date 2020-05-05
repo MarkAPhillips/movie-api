@@ -8,9 +8,10 @@
     "test": "echo \"Tests to be added\" && exit 0",
     "start": "nodemon --exec babel-node -r dotenv/config src/index.js",
     "start:dev": "babel-node src/index.js",
+    "start:docker" : "npm run docker:build && npm run docker:run",
     "lint": "eslint --quiet \"src/**\"",
-    "docker:build": "docker build -t movie-api .",
-    "docker:run": "docker run --env-file .env -p 4000:4000 movie-api"
+    "docker:build": "docker build -f ./build/Dockerfile -t movie-api .",
+    "docker:run": "docker rm -f movie-api >/dev/null 2>&1 && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
   },
   "repository": {
     "type": "git",
