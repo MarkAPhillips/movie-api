@@ -6,6 +6,7 @@ const typeDefs = gql`
         id: ID!
         title: String!
         overview: String!
+        voteAverage: Float!
         imageUrl: String
     }
 
@@ -24,6 +25,7 @@ const typeDefs = gql`
         id: ID!
         title: String!
         overview: String!
+        voteAverage: Float!
         imageUrl: String
     }
 
@@ -31,8 +33,9 @@ const typeDefs = gql`
         id: ID!
         title: String!
         overview: String!
-        imageUrl: String
         voteAverage: Float!
+        imageUrl: String
+        
     }
 `;
 
