@@ -7,7 +7,7 @@ executors:
     working_directory: ~/movie-api
 
 jobs:
-  build:
+  install_test:
     executor: movie-api-executor
     steps:
       - checkout
@@ -17,6 +17,11 @@ jobs:
       - run:
           name: Run linting and tests
           command: npm test
+
+  build_image:
+    executor: movie-api-executor
+    steps:
+      - checkout
       - run:
           name : Build Docker Image
           command: |
@@ -27,7 +32,8 @@ jobs:
           root: workspace
           paths: 
             - movie-api.tar
-  deploy:
+            
+  deploy_image:
     executor: movie-api-executor
     steps:
       - attach_workspace:
@@ -46,14 +52,18 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
             -H "Authorization: Bearer $HEROKU_API_KEY"
+
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build
-      - deploy:
+      - install_test
+      - build_image:
           requires:
-            - build
+            - install_test
           filters:
             branches:
               only: master
+      - deploy:
+          requires:
+            - build_image
