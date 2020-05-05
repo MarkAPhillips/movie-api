@@ -7,3 +7,5 @@ docker-compose*
 .gitignore
 README.md
 .vscode
+.*rc
+.env
