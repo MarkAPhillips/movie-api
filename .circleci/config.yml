@@ -38,7 +38,7 @@ jobs:
           command: |
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
-            npm version minor -m  "Bump minor version to %s [ci skip]"
+            npm version minor -m  "Release version %s [ci skip]"
             PACKAGE_VERSION="$(node -pe "require('./package.json').version")"
             echo 'export VERSION=$PACKAGE_VERSION' >> $BASH_ENV
             echo 'Version created $VERSION'
