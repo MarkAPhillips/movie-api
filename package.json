@@ -11,7 +11,7 @@
     "start:docker" : "npm run docker:build && npm run docker:run",
     "lint": "eslint --quiet \"src/**\"",
     "docker:build": "docker build -f ./build/Dockerfile -t movie-api .",
-    "docker:run": "docker rm -f movie-api >/dev/null 2>&1 && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
+    "docker:run": "docker rm -f movie-ui &> /dev/null || true && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
   },
   "repository": {
     "type": "git",
