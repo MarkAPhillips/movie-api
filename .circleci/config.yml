@@ -36,7 +36,7 @@ jobs:
           name: Package version
           command: |
             npm --no-git-tag-version version
-            $VERSION="$(node -pe "require('./package.json').version")"
+            VERSION="$(node -pe "require('./package.json').version")"
             echo Version created "$VERSION"
       - run:
           name: Tag Git
