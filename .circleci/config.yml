@@ -9,8 +9,6 @@ executors:
 jobs:
   test:
     executor: movie-api-executor
-    environment:
-      VERSION: '1.0.0'
     steps:
       - checkout
       - restore_cache:
@@ -30,20 +28,18 @@ jobs:
          
   build:
     executor: movie-api-executor
+    environment:
+      VERSION: '1.0.0'
     steps:
       - checkout
-      - run:
-          name: Package version
-          command: |
-            npm --no-git-tag-version version
-            VERSION="$(node -pe "require('./package.json').version")"
-            echo Version created "$VERSION"
       - run:
           name: Tag Git
           command: |
             git config user.email "work-mpconsultants@outlook.com"
             git config user.name "Mark Phillips"
-            git commit -m "[ci skip] Bump minor version"
+            npm version -m "[ci skip] Bump minor version"
+            VERSION="$(node -pe "require('./package.json').version")"
+            echo Version created "$VERSION"
             git tag -a v${VERSION} -m "Release version v${VERSION}"
             git push origin master --follow-tags
       - run:
