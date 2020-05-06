@@ -88,5 +88,18 @@ query {
 
 If no `size` argument is passed this defaults to *original* 
 
+## Notes
+
+As part of deployment via Cricle CI need to create a ssh key to push changes to github
+
+`ssh-keygen -m PEM -t rsa -C "work-mpconsults@outlook.com"`
+
+Press enter for each option
+
+A key is generated in the following file `id_rsa.pub`
+
+Run `ls -al ~/.ssh` to see all keys created
+
+Copy key to clipboard `pbcopy < ~/.ssh/id_rsa.pub`
 
 

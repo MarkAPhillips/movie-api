@@ -31,6 +31,9 @@ jobs:
     environment:
       VERSION: '1.0.0'
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "dc:c5:db:c2:6b:f1:ff:55:a9:e7:34:bc:af:50:e6:8b"
       - checkout
       - run:
           name: Tag Git
