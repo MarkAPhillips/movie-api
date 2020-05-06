@@ -39,15 +39,16 @@ jobs:
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
             npm version minor -m  "Bump minor version to %s [ci skip]"
-            echo 'export VERSION="$(node -pe "require('./package.json').version")"' >> $BASH_ENV
-            echo Version created ${VERSION}
+            PACKAGE_VERSION="$(node -pe "require('./package.json').version")"
+            echo 'export VERSION=PACKAGE_VERSION' >> $BASH_ENV
+            echo 'Version created $VERSION'
             git push origin master
       - run:
           name: Tag Git
           command: |
             git config user.email "work-mpconsultants@outlook.com"
             git config user.name "Mark Phillips"
-            git tag -a v${VERSION} -m "Release version v${VERSION}"
+            git tag -a v$VERSION -m "Release version v$VERSION"
             git push origin master --follow-tags
       - run:
           name : Build & Deploy Docker Image
