@@ -38,11 +38,10 @@ jobs:
           command: |
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
-            npm version minor
+            npm version minor -m  "Bump minor version to %s [ci skip]"
             echo 'export VERSION="$(node -pe "require('./package.json').version")"' >> $BASH_ENV
-            echo Version created "$VERSION"
-            git commit -m  "Bump minor version to $VERSION [ci skip]"
-            git push origin master —-tags
+            echo Version created ${VERSION}
+            git push origin master
       - run:
           name: Tag Git
           command: |
