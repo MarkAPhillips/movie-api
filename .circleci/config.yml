@@ -39,13 +39,13 @@ jobs:
             npm version minor -m "Bump minor version %s [ci skip]"
             echo 'export VERSION="$(node -pe "require('./package.json').version")"' >> $BASH_ENV
             echo Version created "$VERSION"
-            git config user.name $CIRCLE_USERNAME
+            git config user.name \"$CIRCLE_USERNAME\"
             git config user.email "work-mpconsultants@outlook.com"
             git push —-tags origin master
       - run:
           name: Tag Git
           command: |
-            git config user.name $CIRCLE_USERNAME
+            git config user.name \"$CIRCLE_USERNAME\"
             git config user.email "work-mpconsultants@outlook.com"
             git tag -a v${VERSION} -m "Release version v${VERSION}"
             git push origin master --follow-tags
