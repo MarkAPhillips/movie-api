@@ -41,7 +41,7 @@ jobs:
             npm version minor
             echo 'export VERSION="$(node -pe "require('./package.json').version")"' >> $BASH_ENV
             echo Version created "$VERSION"
-            git commit -m  Bump minor version $VERSION [ci skip]"
+            git commit -m  "Bump minor version to $VERSION [ci skip]"
             git push origin master —-tags
       - run:
           name: Tag Git
