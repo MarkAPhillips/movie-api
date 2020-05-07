@@ -88,18 +88,41 @@ query {
 
 If no `size` argument is passed this defaults to *original* 
 
-## Notes
+## Setting up Circle CI
 
-As part of deployment via Cricle CI need to create a ssh key to push changes to github
+Add the following Environment Variables to **movie api** project settings:
+
+```
+API_KEY - MovieDb API Key
+HEROKU_API_KEY - Heroku API Key
+HEROKU_APP_NAME - eu-movie-api
+```
+
+Add additional SSH Key for github 
+
+```
+Hostname: github.com
+Private key: see details below on how to create this
+```
+
+## SSH Keys
+
+As part of deployment via Circle CI need to create a ssh key to push changes to github
 
 `ssh-keygen -m PEM -t rsa -C "work-mpconsults@outlook.com"`
 
-Press enter for each option
+Press enter for each option (no passphrase required as this will encrypt the key)
 
-A key is generated in the following file `id_rsa.pub`
+A key is generated in the following file `id_rsa.pub` (public) and `id_rsa` (private)
 
 Run `ls -al ~/.ssh` to see all keys created
 
 Copy key to clipboard `pbcopy < ~/.ssh/id_rsa.pub`
+
+Public key needs to be added to **gitHub**
+
+Copy key to clipboard `pbcopy < ~/.ssh/id_rsa`
+
+Private key needs to be added to **Circle Ci**
 
 

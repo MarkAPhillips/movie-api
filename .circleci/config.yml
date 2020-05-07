@@ -39,7 +39,7 @@ jobs:
             set -e
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
-            npm version minor -m  "Release version %s [ci skip]"
+            npm version patch -m  "Release version %s [ci skip]"
             git push origin master --tags
             echo 'export VERSION=$(npm run version --silent)' >> $BASH_ENV
             source $BASH_ENV
