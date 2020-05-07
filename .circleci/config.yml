@@ -36,10 +36,11 @@ jobs:
       - run:
           name: Bump package version
           command: |
+            set -e
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
             npm version patch -m  "Release version %s [ci skip]"
-            echo 'export VERSION="$(node -pe "require('./package.json').version")"' >> $BASH_ENV
+            echo 'export VERSION="$(node -pe \"require('./package.json').version\")"' >> $BASH_ENV
             source $BASH_ENV        
             echo 'Version created $VERSION'
             git push origin master
