@@ -39,11 +39,10 @@ jobs:
             set -e
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
-            npm version patch -m  "Release version %s [ci skip]"
-            echo 'export VERSION=$(npm run version --silent)' >> $BASH_ENV
-            source $BASH_ENV        
-            echo 'Version created $VERSION'
+            npm version minor -m  "Release version %s [ci skip]"
             git push origin master
+            echo 'export VERSION=$(npm run version --silent)' >> $BASH_ENV
+            source $BASH_ENV
       - run:
           name : Build & Deploy Docker Image
           command: |
