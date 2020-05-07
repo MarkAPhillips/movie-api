@@ -13,8 +13,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - npm-deps-{{ checksum "package.json" }}
+          - npm-deps-
       - run: 
           name: Install Node Dependencies
           command: npm i
@@ -24,7 +24,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: npm-deps-{{ checksum "package.json" }}
          
   build_deploy:
     executor: movie-api-executor
@@ -40,7 +40,7 @@ jobs:
             git config user.name $CIRCLE_USERNAME
             git config user.email "work-mpconsultants@outlook.com"
             npm version patch -m  "Release version %s [ci skip]"
-            echo 'export VERSION=$(node -pe "require('./package.json').version")' >> $BASH_ENV
+            echo 'export VERSION=$(npm run version --silent)' >> $BASH_ENV
             source $BASH_ENV        
             echo 'Version created $VERSION'
             git push origin master
