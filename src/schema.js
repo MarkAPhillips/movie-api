@@ -2,6 +2,17 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 
+    type Pagination {
+        page: Int!
+        pageCount: Int
+        totalResults: Int
+    }
+
+    type PagedMovie {
+        pagination: Pagination
+        results: [Movie!]
+    }
+
     type Movie {
         id: ID!
         title: String!
@@ -23,6 +34,7 @@ const typeDefs = gql`
         trending(width: String = "original"): [Movie!]!
         popular(width: String = "original"): [Movie!]!
         imageConfiguration: ImageConfiguration
+        search(width: String = "original", query: String, page: Int = 1): PagedMovie
     }
 `;
 
