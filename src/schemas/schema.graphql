@@ -1,14 +1,10 @@
 enum MovieTypes {
     POPULAR
     TRENDING
-    ALL
 }
 
 input Filter {
-    imageSize: String = "original"
-    movieType: MovieTypes = ALL
-    text: String
-    first: Int
+    searchText: String
 }
 
 type PageInfo {
@@ -48,5 +44,6 @@ type ImageConfiguration {
 
 type Query {
     imageConfiguration: ImageConfiguration
-    movies(filter: Filter!): MovieCollection!
+    search(imageSize: String = "original", first: Int, filter: Filter!): MovieCollection
+    movies(imageSize: String = "original", movieType: MovieTypes, first: Int): MovieCollection!
 }

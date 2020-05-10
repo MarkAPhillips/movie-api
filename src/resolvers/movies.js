@@ -32,11 +32,11 @@ const buildMovies = async (movies, imageSize) => {
 
 const getTotalCount = (data) => data.total_results || data.results.length;
 
-const getEdges = async (data, imageSize, filter) => {
+const getEdges = async (data, imageSize, first) => {
   let output = [];
   const { results } = data;
-  if (filter.first) {
-    output = results.slice(0, filter.first);
+  if (first) {
+    output = results.slice(0, first);
   } else {
     output = [...results];
   }
@@ -47,20 +47,17 @@ const getEdges = async (data, imageSize, filter) => {
   }));
 };
 
-const getMovies = async (url, imageSize, type, filter) => {
+const getMovies = async (url, imageSize, first) => {
   console.log(`Connecting to ${url}`);
   try {
     const response = await fetch(url);
     const data = await handleResponse(response);
     const totalCount = getTotalCount(data);
-    const edges = await getEdges(data, imageSize, filter);
+    const edges = await getEdges(data, imageSize, first);
     // TODO: Check when empty resultset
     const [endCursor] = edges.slice(-1);
     const startCursor = edges[0];
     const pageInfo = getPageInfo(endCursor.cursor, startCursor.cursor);
-    if (filter.text && type !== 'ALL') {
-      console.log('Filter Trending and popular types');
-    }
     return {
       edges,
       pageInfo,
@@ -71,8 +68,16 @@ const getMovies = async (url, imageSize, type, filter) => {
   }
 };
 
-const movies = async (root, { filter }) => {
-  const { movieType, imageSize } = filter;
+export const search = async (root, { imageSize, filter, first = null }) => {
+  let url = `${BASE_URL}/search/movie?`;
+  if (filter.searchText) {
+    url += `query=${filter.searchText}&`;
+  }
+  url += `api_key=${ENV_VARS.API_KEY}`;
+  return getMovies(url, imageSize, first);
+};
+
+export const movies = async (root, { imageSize, movieType, first }) => {
   let url = `${BASE_URL}/`;
   switch (movieType) {
     case 'TRENDING':
@@ -82,14 +87,8 @@ const movies = async (root, { filter }) => {
       url += 'movie/popular?';
       break;
     default:
-      url += 'search/movie?';
-      if (filter.text) {
-        url += `?query=${filter.text}`;
-      }
       break;
   }
   url += `api_key=${ENV_VARS.API_KEY}`;
-  return getMovies(url, imageSize, movieType, filter);
+  return getMovies(url, imageSize, first);
 };
-
-export default movies;

@@ -1,12 +1,13 @@
 import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
-import movies from './resolvers/movies';
+import { movies, search } from './resolvers/movies';
 import { imageConfiguration } from './resolvers/configuration';
 
 const resolvers = {
   Query: {
     imageConfiguration,
     movies,
+    search,
   },
 };
 
