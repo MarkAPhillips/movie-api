@@ -1,0 +1,52 @@
+enum MovieTypes {
+    POPULAR
+    TRENDING
+    ALL
+}
+
+input Filter {
+    imageSize: String = "original"
+    movieType: MovieTypes = ALL
+    text: String
+    first: Int
+}
+
+type PageInfo {
+    startCursor: ID!
+    endCursor: ID!
+    hasPreviousPage: Boolean
+    hasNextPage: Boolean
+}
+
+type MovieCollection {
+    edges: [MovieEdge!]!
+    totalCount: Int!
+    pageInfo: PageInfo
+} 
+
+type MovieEdge {
+    cursor: ID!
+    node: Movie!
+}
+
+type Movie {
+    id: ID!
+    title: String!
+    overview: String!
+    voteAverage: Float!
+    voteCount: Int!
+    releaseDate: String!
+    originalLanguage: String!
+    popularity: Float!
+    imageUrl: String
+}
+
+type ImageConfiguration {
+    baseUrl: String!
+    sizes: [String!]!
+}
+
+type Query {
+    imageConfiguration: ImageConfiguration
+    movies(filter: Filter!): MovieCollection!
+}
