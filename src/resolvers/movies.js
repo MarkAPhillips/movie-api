@@ -1,9 +1,7 @@
 /* eslint-disable consistent-return */
-import fetch from 'node-fetch';
-import { ENV_VARS, BASE_URL } from '../constants';
-import { handleResponse, handleError } from '../fetchHandler';
+import { BASE_URL } from '../constants';
 import { buildImage } from '../imageBuilder';
-import getPaging from './pagination';
+import get from '../services/restService';
 
 const movieMapper = (item, imageUrl) => (
   {
@@ -19,47 +17,30 @@ const movieMapper = (item, imageUrl) => (
   }
 );
 
-const buildMovies = async (movies, width) => {
+export const buildMovies = async (movies, imageSize) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const movie of movies) {
     // eslint-disable-next-line no-await-in-loop
-    const imageUrl = await buildImage(movie.poster_path, width);
+    const imageUrl = await buildImage(movie.poster_path, imageSize);
     output.push(movieMapper(movie, imageUrl));
   }
   return output;
 };
 
-const getMovies = async (url, width, hasPaging = false) => {
-  console.log(`Connecting to ${url}`);
-  try {
-    const response = await fetch(url);
-    const data = await handleResponse(response);
-    const movies = buildMovies(data.results, width);
-    if (hasPaging) {
-      return {
-        pagination: getPaging(data),
-        results: movies,
-      };
-    }
-    return movies;
-  } catch (err) {
-    handleError(err, url);
-  }
+const movieBuilder = async (url, imageSize) => {
+  const data = await get(url);
+  const { results } = data;
+  return buildMovies(results, imageSize);
 };
 
-export const trending = async (parent, args) => {
-  const url = `${BASE_URL}/trending/movie/day?api_key=${ENV_VARS.API_KEY}`;
-  return getMovies(url, args.width);
+
+export const trending = async (root, { imageSize, period }) => {
+  const url = `${BASE_URL}/trending/movie/${period}?`;
+  return movieBuilder(url, imageSize);
 };
 
-export const popular = async (parent, args) => {
-  const url = `${BASE_URL}/movie/popular?api_key=${ENV_VARS.API_KEY}&language=en-US&page=1`;
-  return getMovies(url, args.width);
-};
-
-export const search = async (parent, args) => {
-  const { width, query, page } = args;
-  const url = `${BASE_URL}/search/movie?api_key=${ENV_VARS.API_KEY}&query=${query}&page=${page}`;
-  return getMovies(url, width, true);
+export const popular = async (root, { imageSize }) => {
+  const url = `${BASE_URL}/movie/popular?`;
+  return movieBuilder(url, imageSize);
 };

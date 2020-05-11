@@ -1,7 +1,9 @@
-const getPaging = (item) => ({
-  page: item.page,
-  pageCount: item.total_pages,
-  totalResults: item.total_results,
+// TODO: Need to determine hasNextPage and hasPreviousPage
+const getPageInfo = (endCursor, startCursor) => ({
+  endCursor,
+  hasNextPage: false,
+  hasPreviousPage: false,
+  startCursor,
 });
 
-export default getPaging;
+export default getPageInfo;

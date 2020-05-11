@@ -1,0 +1,50 @@
+enum TrendingPeriod {
+    week
+    day
+}
+
+input Filter {
+    searchText: String
+}
+
+type PageInfo {
+    startCursor: ID!
+    endCursor: ID!
+    hasPreviousPage: Boolean
+    hasNextPage: Boolean
+}
+
+type MovieCollection {
+    edges: [MovieEdge!]!
+    totalCount: Int!
+    pageInfo: PageInfo
+} 
+
+type MovieEdge {
+    cursor: ID!
+    node: Movie!
+}
+
+type Movie {
+    id: ID!
+    title: String!
+    overview: String!
+    voteAverage: Float!
+    voteCount: Int!
+    releaseDate: String!
+    originalLanguage: String!
+    popularity: Float!
+    imageUrl: String
+}
+
+type ImageConfiguration {
+    baseUrl: String!
+    imageSizes: [String!]!
+}
+
+type Query {
+    imageConfiguration: ImageConfiguration
+    search(imageSize: String = "original", first: Int, filter: Filter!): MovieCollection
+    trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
+    popular(imageSize: String = "original"): [Movie!]!
+}
