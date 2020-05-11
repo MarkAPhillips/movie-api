@@ -1,18 +1,20 @@
 import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
-import { movies, search } from './resolvers/movies';
+import { trending, popular } from './resolvers/movies';
+import search from './resolvers/search';
 import { imageConfiguration } from './resolvers/configuration';
 
 const resolvers = {
   Query: {
     imageConfiguration,
-    movies,
+    trending,
+    popular,
     search,
   },
 };
 
 const server = new ApolloServer({
-  typeDefs: importSchema('src/schemas/schema.graphql'),
+  typeDefs: importSchema('src/schema.graphql'),
   resolvers,
 });
 

@@ -16,12 +16,12 @@ export const buildImage = async (posterPath, width) => {
       cachedImageConfiguration = await imageConfiguration();
       cache.set(CACHE_KEY, cachedImageConfiguration, CACHE_EXPIRE_SECONDS);
     }
-    const { baseUrl, sizes } = cachedImageConfiguration;
-    const size = sizes.find((item) => item === width);
-    if (size || !posterPath) {
-      return `${baseUrl}${size}${posterPath}`;
+    const { baseUrl, imageSizes } = cachedImageConfiguration;
+    const imageSize = imageSizes.find((item) => item === width);
+    if (imageSize || !posterPath) {
+      return `${baseUrl}${imageSize}${posterPath}`;
     }
-    console.log(`Image size ${width} not found in ${sizes.toString()}`);
+    console.log(`Image size ${width} not found in ${imageSizes.toString()}`);
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
   }

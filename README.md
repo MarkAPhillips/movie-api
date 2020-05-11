@@ -42,7 +42,7 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 
 ```
  query {
-    trending (width: "w154") {
+    trending (imageSize: "w154", period: week) {
       id,
       title,
       overview,
@@ -55,12 +55,14 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
     }
   }
 ```
+**period** is optional and defaults to **day** 
+Options are day|week
 
 2. [Get Popular Movies](https://developers.themoviedb.org/3/movies/get-popular-movies)
 
 ```
  query {
-    popular(width: "w154") {
+    popular(imageSize: "w154") {
       id,
       title,
       overview,
@@ -89,13 +91,10 @@ query {
 
 ```
 query {
-    search(query: "godzilla", page:2){
-    pagination{
-      page
-      pageCount
-      totalResults
-    }
-      results {
+  search(filter:{ searchText: "Star"}, first:10) {
+    edges {
+      cursor
+      node {
         id,
         title,
         overview,
@@ -105,14 +104,22 @@ query {
         voteCount,
         releaseDate,
         originalLanguage,
-  		}
+      }
+    }
+    totalCount
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
   }
 }
 ```
 
-`size` parameter can be obtained by querying the *imageConfiguration* end point and selecting an entry from the `sizes` property.
+`imageSize` parameter can be obtained by querying the *imageConfiguration* end point and selecting an entry from the `imageSizes` property.
 
-If no `size` argument is passed this defaults to *original* 
+If no `imageSizes` argument is passed this defaults to *original* 
 
 ## Setting up Circle CI
 

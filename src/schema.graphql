@@ -1,6 +1,6 @@
-enum MovieTypes {
-    POPULAR
-    TRENDING
+enum TrendingPeriod {
+    week
+    day
 }
 
 input Filter {
@@ -39,11 +39,12 @@ type Movie {
 
 type ImageConfiguration {
     baseUrl: String!
-    sizes: [String!]!
+    imageSizes: [String!]!
 }
 
 type Query {
     imageConfiguration: ImageConfiguration
     search(imageSize: String = "original", first: Int, filter: Filter!): MovieCollection
-    movies(imageSize: String = "original", movieType: MovieTypes, first: Int): MovieCollection!
+    trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
+    popular(imageSize: String = "original"): [Movie!]!
 }

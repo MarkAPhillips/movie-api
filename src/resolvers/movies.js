@@ -1,9 +1,7 @@
 /* eslint-disable consistent-return */
-import fetch from 'node-fetch';
 import { ENV_VARS, BASE_URL } from '../constants';
-import { handleResponse, handleError } from '../fetchHandler';
 import { buildImage } from '../imageBuilder';
-import getPageInfo from './pagination';
+import getMovies from '../services/movieService';
 
 const movieMapper = (item, imageUrl) => (
   {
@@ -19,7 +17,7 @@ const movieMapper = (item, imageUrl) => (
   }
 );
 
-const buildMovies = async (movies, imageSize) => {
+export const buildMovies = async (movies, imageSize) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const movie of movies) {
@@ -30,65 +28,19 @@ const buildMovies = async (movies, imageSize) => {
   return output;
 };
 
-const getTotalCount = (data) => data.total_results || data.results.length;
-
-const getEdges = async (data, imageSize, first) => {
-  let output = [];
+const movieBuilder = async (url, imageSize) => {
+  const data = await getMovies(url);
   const { results } = data;
-  if (first) {
-    output = results.slice(0, first);
-  } else {
-    output = [...results];
-  }
-  const movies = await buildMovies(output, imageSize);
-  return movies.map((node) => ({
-    cursor: node.id,
-    node,
-  }));
+  return buildMovies(results, imageSize);
 };
 
-const getMovies = async (url, imageSize, first) => {
-  console.log(`Connecting to ${url}`);
-  try {
-    const response = await fetch(url);
-    const data = await handleResponse(response);
-    const totalCount = getTotalCount(data);
-    const edges = await getEdges(data, imageSize, first);
-    // TODO: Check when empty resultset
-    const [endCursor] = edges.slice(-1);
-    const startCursor = edges[0];
-    const pageInfo = getPageInfo(endCursor.cursor, startCursor.cursor);
-    return {
-      edges,
-      pageInfo,
-      totalCount,
-    };
-  } catch (err) {
-    handleError(err, url);
-  }
+
+export const trending = async (root, { imageSize, period }) => {
+  const url = `${BASE_URL}/trending/movie/${period}?api_key=${ENV_VARS.API_KEY}`;
+  return movieBuilder(url, imageSize);
 };
 
-export const search = async (root, { imageSize, filter, first = null }) => {
-  let url = `${BASE_URL}/search/movie?`;
-  if (filter.searchText) {
-    url += `query=${filter.searchText}&`;
-  }
-  url += `api_key=${ENV_VARS.API_KEY}`;
-  return getMovies(url, imageSize, first);
-};
-
-export const movies = async (root, { imageSize, movieType, first }) => {
-  let url = `${BASE_URL}/`;
-  switch (movieType) {
-    case 'TRENDING':
-      url += 'trending/movie/day?';
-      break;
-    case 'POPULAR':
-      url += 'movie/popular?';
-      break;
-    default:
-      break;
-  }
-  url += `api_key=${ENV_VARS.API_KEY}`;
-  return getMovies(url, imageSize, first);
+export const popular = async (root, { imageSize }) => {
+  const url = `${BASE_URL}/movie/popular?api_key=${ENV_VARS.API_KEY}`;
+  return movieBuilder(url, imageSize);
 };
