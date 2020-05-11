@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import { ENV_VARS, BASE_URL } from '../constants';
+import { BASE_URL } from '../constants';
 import { buildImage } from '../imageBuilder';
-import getMovies from '../services/movieService';
+import get from '../services/restService';
 
 const movieMapper = (item, imageUrl) => (
   {
@@ -29,18 +29,18 @@ export const buildMovies = async (movies, imageSize) => {
 };
 
 const movieBuilder = async (url, imageSize) => {
-  const data = await getMovies(url);
+  const data = await get(url);
   const { results } = data;
   return buildMovies(results, imageSize);
 };
 
 
 export const trending = async (root, { imageSize, period }) => {
-  const url = `${BASE_URL}/trending/movie/${period}?api_key=${ENV_VARS.API_KEY}`;
+  const url = `${BASE_URL}/trending/movie/${period}?`;
   return movieBuilder(url, imageSize);
 };
 
 export const popular = async (root, { imageSize }) => {
-  const url = `${BASE_URL}/movie/popular?api_key=${ENV_VARS.API_KEY}`;
+  const url = `${BASE_URL}/movie/popular?`;
   return movieBuilder(url, imageSize);
 };

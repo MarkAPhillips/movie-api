@@ -1,8 +1,8 @@
 
 /* eslint-disable consistent-return */
-import { ENV_VARS, BASE_URL } from '../constants';
+import { BASE_URL } from '../constants';
 import getPageInfo from './pagination';
-import getMovies from '../services/movieService';
+import get from '../services/restService';
 import { buildMovies } from './movies';
 
 const getTotalCount = (data) => data.total_results || data.results.length;
@@ -23,7 +23,7 @@ const getEdges = async (data, imageSize, first) => {
 };
 
 const searchBuilder = async (url, imageSize, first) => {
-  const data = await getMovies(url);
+  const data = await get(url);
   const totalCount = getTotalCount(data);
   const edges = await getEdges(data, imageSize, first);
   // TODO: Check when empty resultset
@@ -43,7 +43,6 @@ const search = async (root, { imageSize, filter, first = null }) => {
   if (filter.searchText) {
     url += `query=${filter.searchText}&`;
   }
-  url += `api_key=${ENV_VARS.API_KEY}`;
   return searchBuilder(url, imageSize, first);
 };
 
