@@ -20,7 +20,13 @@ jobs:
           command: npm i
       - run:
           name: Run Linting and Tests
-          command: npm test
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports/junit
       - save_cache:
           paths:
             - node_modules
