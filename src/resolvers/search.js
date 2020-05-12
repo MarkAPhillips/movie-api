@@ -3,7 +3,7 @@
 import { BASE_URL } from '../constants';
 import getPageInfo from './pagination';
 import get from '../services/restService';
-import { buildMovies } from './movies';
+import buildMovies from './helpers/movieBuilder';
 
 const getTotalCount = (data) => data.total_results || data.results.length;
 
