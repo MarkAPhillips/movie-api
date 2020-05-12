@@ -8,20 +8,19 @@ input Filter {
 }
 
 type PageInfo {
-    startCursor: ID!
-    endCursor: ID!
-    hasPreviousPage: Boolean
-    hasNextPage: Boolean
+    hasNextPage: Boolean!
+    hasPreviousePage: Boolean!
 }
 
-type MovieCollection {
+type MovieConnection {
     edges: [MovieEdge!]!
+    pageInfo: PageInfo!
     totalCount: Int!
-    pageInfo: PageInfo
+    page: Int!
+    noOfPages: Int!
 } 
 
 type MovieEdge {
-    cursor: ID!
     node: Movie!
 }
 
@@ -44,7 +43,7 @@ type ImageConfiguration {
 
 type Query {
     imageConfiguration: ImageConfiguration
-    search(imageSize: String = "original", first: Int, filter: Filter!): MovieCollection
+    search(imageSize: String = "original", page: Int = 1, filter: Filter!): MovieConnection
     trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
     popular(imageSize: String = "original"): [Movie!]!
 }

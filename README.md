@@ -82,7 +82,7 @@ Options are day|week
 query {
     imageConfiguration {
       baseUrl,
-      sizes,
+      imageSizes,
     }
   }
 ```
@@ -91,9 +91,8 @@ query {
 
 ```
 query {
-  search(filter:{ searchText: "Star"}, first:10) {
+  search(filter:{ searchText:"fish"}, page:2) {
     edges {
-      cursor
       node {
         id,
         title,
@@ -107,12 +106,8 @@ query {
       }
     }
     totalCount
-    pageInfo {
-      startCursor
-      endCursor
-      hasPreviousPage
-      hasNextPage
-    }
+   	pageNo
+    noOfPages
   }
 }
 ```

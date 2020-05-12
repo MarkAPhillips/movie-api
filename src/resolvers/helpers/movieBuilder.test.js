@@ -18,7 +18,7 @@ const mockData = [
   },
 ];
 
-describe('MovieBuilder tests', () => {
+describe('movieBuilder tests', () => {
   it('should return a list of movies', async () => {
     const expected = [{
       id: 419704,
