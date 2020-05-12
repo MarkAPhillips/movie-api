@@ -1,4 +1,4 @@
-import buildMovies from './movieBuilder';
+import { buildMovies } from './movieBuilder';
 
 jest.mock('./imageBuilder', () => ({
   buildImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg')),

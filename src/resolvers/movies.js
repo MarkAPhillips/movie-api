@@ -3,12 +3,13 @@ import { BASE_URL } from '../constants';
 import get from '../services/restService';
 import { buildMovies, buildMovie } from './helpers/movieBuilder';
 
-//todo: possibly split this into 'moviesBuilder' and 'movieBuilder' instead of relying on existence of 'results' (to discuss)
+// todo: possibly split this into 'moviesBuilder' and 'movieBuilder'
+// instead of relying on existence of 'results' (to discuss)
 const movieBuilder = async (url, imageSize) => {
   const data = await get(url);
   const { results } = data;
-  if(!!results){
-    return buildMovies(results, imageSize)
+  if (results) {
+    return buildMovies(results, imageSize);
   }
   return buildMovie(data, imageSize);
 };

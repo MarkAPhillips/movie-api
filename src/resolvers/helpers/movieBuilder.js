@@ -25,10 +25,10 @@ export const buildMovies = async (movies, imageSize) => {
   return output;
 };
 
-//todo: have initially built movie detail based on same schema/model as 'trending/popular', need to look at maybe extending movie to encompass additional properties
+// todo: have initially built movie detail based on same schema/model as 'trending/popular',
+// need to look at maybe extending movie to encompass additional properties
 export const buildMovie = async (movie, imageSize) => {
-    // eslint-disable-next-line no-await-in-loop
-    const imageUrl = await buildImage(movie.poster_path, imageSize);
-    return {...movieMapper(movie, imageUrl)};
+  // eslint-disable-next-line no-await-in-loop
+  const imageUrl = await buildImage(movie.poster_path, imageSize);
+  return { ...movieMapper(movie, imageUrl) };
 };
-
