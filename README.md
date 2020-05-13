@@ -116,6 +116,24 @@ query {
 }
 ```
 
+5. [Get a Movie By Id](https://developers.themoviedb.org/3/movies/get-movie-details)
+
+```
+ query {
+    movie(id: 545609) {
+        id,
+        title,
+        overview,
+        imageUrl,
+        voteAverage,
+        popularity,
+        voteCount,
+        releaseDate,
+        originalLanguage,
+      }
+  }
+  ```
+
 The above search pagination is a hybrid based on standard [relay cursor pagination](https://relay.dev/graphql/connections.htm) and limitations in the current MovieDB REST API. 
 
 The MovieDB REST API has a fixed page size of **20** records and requires a **page** number to be passed as part of the query. This therefore restricts the implementation of a pure cursor based pagination in relation to performance. 

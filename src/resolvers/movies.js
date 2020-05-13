@@ -25,7 +25,7 @@ export const popular = async (root, { imageSize }) => {
   return movieBuilder(url, imageSize);
 };
 
-export const movie = async (root, { imageSize, movieId }) => {
-  const url = `${BASE_URL}/movie/${movieId}?`;
+export const movie = async (root, { imageSize, id }) => {
+  const url = `${BASE_URL}/movie/${id}?`;
   return movieBuilder(url, imageSize);
 };
