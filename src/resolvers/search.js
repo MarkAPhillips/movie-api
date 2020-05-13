@@ -1,49 +1,38 @@
 
 /* eslint-disable consistent-return */
 import { BASE_URL } from '../constants';
-import getPageInfo from './pagination';
 import get from '../services/restService';
 import buildMovies from './helpers/movieBuilder';
+import getPageInfo from './helpers/pageInfoBuilder';
 
-const getTotalCount = (data) => data.total_results || data.results.length;
-
-const getEdges = async (data, imageSize, first) => {
-  let output = [];
+const getEdges = async (data, imageSize) => {
   const { results } = data;
-  if (first) {
-    output = results.slice(0, first);
-  } else {
-    output = [...results];
-  }
-  const movies = await buildMovies(output, imageSize);
+  const movies = await buildMovies(results, imageSize);
   return movies.map((node) => ({
-    cursor: node.id,
     node,
   }));
 };
 
-const searchBuilder = async (url, imageSize, first) => {
+const searchBuilder = async (url, imageSize, page) => {
   const data = await get(url);
-  const totalCount = getTotalCount(data);
-  const edges = await getEdges(data, imageSize, first);
-  // TODO: Check when empty resultset
-  const [endCursor] = edges.slice(-1);
-  const startCursor = edges[0];
-  const pageInfo = getPageInfo(endCursor.cursor, startCursor.cursor);
+  const edges = await getEdges(data, imageSize);
+  const pageNo = edges.length ? page : 1;
   return {
     edges,
-    pageInfo,
-    totalCount,
+    totalCount: data.total_results,
+    page: pageNo,
+    noOfPages: data.total_pages,
+    pageInfo: getPageInfo(page, data.total_pages),
   };
 };
 
-const search = async (root, { imageSize, filter, first = null }) => {
-  let url = `${BASE_URL}/search/movie?`;
+const search = async (root, { imageSize, filter, page }) => {
+  let url = `${BASE_URL}/search/movie?page=${page}&`;
   // TODO: searchText is required otherwise API returns query required error
   if (filter.searchText) {
     url += `query=${filter.searchText}&`;
   }
-  return searchBuilder(url, imageSize, first);
+  return searchBuilder(url, imageSize, page);
 };
 
 export default search;
