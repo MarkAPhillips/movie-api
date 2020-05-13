@@ -1,12 +1,17 @@
 /* eslint-disable consistent-return */
 import { BASE_URL } from '../constants';
 import get from '../services/restService';
-import buildMovies from './helpers/movieBuilder';
+import { buildMovies, buildMovie } from './helpers/movieBuilder';
 
+// todo: possibly split this into 'moviesBuilder' and 'movieBuilder'
+// instead of relying on existence of 'results' (to discuss)
 const movieBuilder = async (url, imageSize) => {
   const data = await get(url);
   const { results } = data;
-  return buildMovies(results, imageSize);
+  if (results) {
+    return buildMovies(results, imageSize);
+  }
+  return buildMovie(data, imageSize);
 };
 
 
@@ -17,5 +22,10 @@ export const trending = async (root, { imageSize, period }) => {
 
 export const popular = async (root, { imageSize }) => {
   const url = `${BASE_URL}/movie/popular?`;
+  return movieBuilder(url, imageSize);
+};
+
+export const movie = async (root, { imageSize, movieId }) => {
+  const url = `${BASE_URL}/movie/${movieId}?`;
   return movieBuilder(url, imageSize);
 };

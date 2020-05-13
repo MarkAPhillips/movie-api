@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
-import { trending, popular } from './resolvers/movies';
+
+import { trending, popular, movie } from './resolvers/movies';
 import search from './resolvers/search';
 import imageConfiguration from './resolvers/configuration';
 
@@ -9,6 +10,7 @@ const resolvers = {
     imageConfiguration,
     trending,
     popular,
+    movie,
     search,
   },
 };

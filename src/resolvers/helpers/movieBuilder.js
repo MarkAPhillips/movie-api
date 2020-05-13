@@ -14,7 +14,7 @@ const movieMapper = (item, imageUrl) => (
   }
 );
 
-const buildMovies = async (movies, imageSize) => {
+export const buildMovies = async (movies, imageSize) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const movie of movies) {
@@ -25,4 +25,10 @@ const buildMovies = async (movies, imageSize) => {
   return output;
 };
 
-export default buildMovies;
+// todo: have initially built movie detail based on same schema/model as 'trending/popular',
+// need to look at maybe extending movie to encompass additional properties
+export const buildMovie = async (movie, imageSize) => {
+  // eslint-disable-next-line no-await-in-loop
+  const imageUrl = await buildImage(movie.poster_path, imageSize);
+  return { ...movieMapper(movie, imageUrl) };
+};
