@@ -91,7 +91,10 @@ query {
 
 ```
 query {
-  search(filter:{ searchText:"fish"}, page:2) {
+  search(filter:{ searchText:"sharknado"}, page:1) {
+    totalCount
+  	page
+    noOfPages
     edges {
       node {
         id,
@@ -105,12 +108,19 @@ query {
         originalLanguage,
       }
     }
-    totalCount
-   	pageNo
-    noOfPages
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
   }
 }
 ```
+
+The above search pagination is a hybrid based on standard [relay cursor pagination](https://relay.dev/graphql/connections.htm) and limitations in the current MovieDB REST API. 
+
+The MovieDB REST API has a fixed page size of **20** records and requires a **page** number to be passed as part of the query. This therefore restricts the implementation of a pure cursor based pagination in relation to performance. 
+
+### Notes
 
 `imageSize` parameter can be obtained by querying the *imageConfiguration* end point and selecting an entry from the `imageSizes` property.
 

@@ -16,12 +16,13 @@ const getEdges = async (data, imageSize) => {
 const searchBuilder = async (url, imageSize, page) => {
   const data = await get(url);
   const edges = await getEdges(data, imageSize);
+  const pageNo = edges.length ? page : 1;
   return {
     edges,
     totalCount: data.total_results,
-    page,
+    page: pageNo,
     noOfPages: data.total_pages,
-    pageInfo: getPageInfo(page, data.total_results, data.total_pages),
+    pageInfo: getPageInfo(page, data.total_pages),
   };
 };
 
