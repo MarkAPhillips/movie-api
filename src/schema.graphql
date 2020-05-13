@@ -47,5 +47,5 @@ type Query {
     search(imageSize: String = "original", first: Int, filter: Filter!): MovieCollection
     trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
     popular(imageSize: String = "original"): [Movie!]!
-    movie(imageSize: String = "original", movieId: Int): Movie!
+    movie(imageSize: String = "original", movieId: Int!): Movie!
 }
