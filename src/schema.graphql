@@ -30,7 +30,7 @@ type Movie {
     overview: String!
     voteAverage: Float!
     voteCount: Int!
-    releaseDate: String!
+    releaseDate: String
     originalLanguage: String!
     popularity: Float!
     imageUrl: String

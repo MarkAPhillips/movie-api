@@ -8,6 +8,7 @@ const cache = new NodeCache();
 
 /*
 Structure of image https://image.tmdb.org/t/p/w154/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+Return null if no poster path specified
 */
 export const buildImage = async (posterPath, width) => {
   let cachedImageConfiguration = cache.get(CACHE_KEY);
@@ -18,13 +19,12 @@ export const buildImage = async (posterPath, width) => {
     }
     const { baseUrl, imageSizes } = cachedImageConfiguration;
     const imageSize = imageSizes.find((item) => item === width);
-    if (imageSize || !posterPath) {
+    if (imageSize && posterPath) {
       return `${baseUrl}${imageSize}${posterPath}`;
     }
     console.log(`Image size ${width} not found in ${imageSizes.toString()}`);
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
   }
-  // TODO: Review default output based on standard image
-  return 'https://via.placeholder.com/154x231';
+  return null;
 };
