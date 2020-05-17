@@ -22,7 +22,9 @@ export const buildImage = async (posterPath, width) => {
     if (imageSize && posterPath) {
       return `${baseUrl}${imageSize}${posterPath}`;
     }
-    console.log(`Image size ${width} not found in ${imageSizes.toString()}`);
+    if (!imageSize) {
+      console.log(`Image size ${width} not found in ${imageSizes.toString()}`);
+    }
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
   }

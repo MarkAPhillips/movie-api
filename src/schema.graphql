@@ -3,6 +3,8 @@ enum TrendingPeriod {
     day
 }
 
+scalar Date
+
 input Filter {
     searchText: String
 }
@@ -30,7 +32,7 @@ type Movie {
     overview: String!
     voteAverage: Float!
     voteCount: Int!
-    releaseDate: String
+    releaseDate: Date
     originalLanguage: String!
     popularity: Float!
     imageUrl: String
