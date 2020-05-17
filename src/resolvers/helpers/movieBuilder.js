@@ -7,7 +7,7 @@ const movieMapper = (item, imageUrl) => (
     overview: item.overview,
     voteAverage: item.vote_average,
     voteCount: item.vote_count,
-    releaseDate: item.release_date,
+    releaseDate: item.release_date === '' ? null : item.release_date,
     originalLanguage: item.original_language,
     popularity: item.popularity,
     imageUrl,
