@@ -130,6 +130,10 @@ query {
         voteCount,
         releaseDate,
         originalLanguage,
+        similar {
+          id
+          title
+        }
       }
   }
   ```
