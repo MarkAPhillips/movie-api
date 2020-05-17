@@ -3,17 +3,12 @@ import { BASE_URL } from '../constants';
 import get from '../services/restService';
 import { buildMovies, buildMovie } from './helpers/movieBuilder';
 
-// todo: possibly split this into 'moviesBuilder' and 'movieBuilder'
-// instead of relying on existence of 'results' (to discuss)
 const movieBuilder = async (url, imageSize) => {
   const data = await get(url);
   const { results } = data;
-  if (results) {
-    return buildMovies(results, imageSize);
-  }
-  return buildMovie(data, imageSize);
+  return !results
+    ? buildMovie(data, imageSize) : buildMovies(results, imageSize);
 };
-
 
 export const trending = async (root, { imageSize, period }) => {
   const url = `${BASE_URL}/trending/movie/${period}?`;

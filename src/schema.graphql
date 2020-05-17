@@ -36,6 +36,7 @@ type Movie {
     originalLanguage: String!
     popularity: Float!
     imageUrl: String
+    similar: [Movie!]
 }
 
 type ImageConfiguration {
