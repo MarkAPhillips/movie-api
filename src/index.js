@@ -4,6 +4,7 @@ import { GraphQLDate } from 'graphql-iso-date';
 import {
   trending, popular, movie, similar,
 } from './resolvers/movies';
+import cast from './resolvers/people';
 import search from './resolvers/search';
 import imageConfiguration from './resolvers/configuration';
 
@@ -18,6 +19,7 @@ const resolvers = {
   },
   Movie: {
     similar,
+    cast,
   },
 };
 

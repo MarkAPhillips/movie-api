@@ -22,6 +22,18 @@ type MovieConnection {
     noOfPages: Int!
 } 
 
+type Person {
+    id: ID!
+    name: String!
+    imageUrl: String
+}
+
+type Cast {
+    id: ID!
+    character: String!
+    person: Person
+}
+
 type MovieEdge {
     node: Movie!
 }
@@ -37,6 +49,7 @@ type Movie {
     popularity: Float!
     imageUrl: String
     similar: [Movie!]
+    cast: [Cast!]
 }
 
 type ImageConfiguration {
