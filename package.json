@@ -1,6 +1,6 @@
 {
   "name": "movie-api",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Movie API build using GraphQL",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "start:docker": "npm run docker:build && npm run docker:run",
     "start:scheduler": "babel-node -r dotenv/config scheduler",
     "lint": "eslint --quiet \"src/**\"",
-    "scheduler": "babel-node scheduler", 
+    "scheduler": "babel-node scheduler",
     "docker:build": "docker build -f ./build/Dockerfile -t movie-api .",
     "docker:run": "docker rm -f movie-api &> /dev/null || true && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
   },
