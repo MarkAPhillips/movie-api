@@ -17,7 +17,7 @@ const mockData = {
   ],
 };
 
-jest.mock('./helpers/imageBuilder', () => ({
+jest.mock('../services/helpers/imageBuilder', () => ({
   buildImage: jest.fn(() => Promise.resolve(
     'https://image.tmdb.org/t/p/original/vGDifxN2PnO69rnpg6FoWkocFCD.jpg',
   )),

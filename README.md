@@ -16,9 +16,17 @@ In project root run the following:
 
 Replacing **{API_KEY}** with a valid api key created at the [Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
 
+`echo DB_PWD={DB_PWD} >> .env`
+
+Replacing **{DB_PWD}** with the password created for user dbUser on [MongoDB Atlas Account](https://cloud.mongodb.com/)
+
+`echo SCHEDULE={SCHEDULE} >> .env`
+
+Replacing **{SCHEDULE}** with a valid CRON expression (e.g. 5 * * * * * ) which runs a scheduler to store the lastest featured movie. This is run every day at midnight on the DEV environment.
+
 Run `npm i`
 
-## Run & build locally
+## Run & Build Locally
 
 Run `npm start`
 
@@ -26,7 +34,7 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally and test 
 
 Any changes to the code using this method force a rebuild 
 
-## Run & build with Docker
+## Run & Build with Docker
 
 Ensure [Docker](https://docs.docker.com/get-docker/) is installed locally.
 
@@ -185,4 +193,6 @@ Copy key to clipboard `pbcopy < ~/.ssh/id_rsa`
 
 Private key needs to be added to **Circle Ci**
 
+## Scheduler
 
+A scheduler is run on a daily basis to store the current featured movie. This is currently work in progress and will be updated and reviewed on an ongoing basis. A connection to mongoDB was added to provide this functionality.

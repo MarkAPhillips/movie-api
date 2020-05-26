@@ -12,9 +12,11 @@
     "start": "nodemon --exec babel-node -r dotenv/config src/index.js",
     "start:dev": "babel-node src/index.js",
     "start:docker": "npm run docker:build && npm run docker:run",
+    "start:scheduler": "babel-node -r dotenv/config scheduler",
     "lint": "eslint --quiet \"src/**\"",
+    "scheduler": "babel-node scheduler", 
     "docker:build": "docker build -f ./build/Dockerfile -t movie-api .",
-    "docker:run": "docker rm -f movie-ui &> /dev/null || true && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
+    "docker:run": "docker rm -f movie-api &> /dev/null || true && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
   },
   "repository": {
     "type": "git",
@@ -29,9 +31,14 @@
   "homepage": "https://github.com/MarkAPhillips/movie-api#readme",
   "dependencies": {
     "apollo-server": "^2.12.0",
+    "colors": "^1.4.0",
+    "cron": "^1.8.2",
     "graphql": "^15.0.0",
     "graphql-import": "^1.0.2",
     "graphql-iso-date": "^3.6.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.16",
     "node-cache": "^5.1.0",
     "node-fetch": "^2.6.0"
   },

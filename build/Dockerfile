@@ -12,4 +12,4 @@ RUN useradd dockerUser
 
 USER dockerUser
 
-CMD [ "npm", "run", "start:dev" ]
+CMD npm run start:dev & npm run scheduler
