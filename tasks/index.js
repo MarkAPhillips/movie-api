@@ -1,7 +1,7 @@
 import colors from 'colors/safe';
 import first from 'lodash/first';
-import FeaturedMovieModel from '../mongodb/models/featuredMovie';
-import { connect, disconnect } from '../mongodb';
+import FeaturedMovieModel from '../db/models/featuredMovie';
+import { connect, disconnect } from '../db';
 import { getPopular } from '../services/movieService';
 
 const tasks = async () => {

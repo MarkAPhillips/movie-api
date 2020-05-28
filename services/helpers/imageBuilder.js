@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import NodeCache from 'node-cache';
-import imageConfiguration from '../../graphql/resolvers/configuration';
+import imageConfiguration from '../../api/resolvers/configuration';
 
 const CACHE_KEY = '__movie_api_config__';
 const CACHE_EXPIRE_SECONDS = 86400; // 1 day in seconds
