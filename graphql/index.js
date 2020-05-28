@@ -24,7 +24,7 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
-  typeDefs: importSchema('src/schema.graphql'),
+  typeDefs: importSchema('graphql/schema.graphql'),
   resolvers,
 });
 
