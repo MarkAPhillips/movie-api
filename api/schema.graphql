@@ -29,7 +29,7 @@ type Person {
 }
 
 type Cast {
-    id: ID!
+    id: String!
     character: String!
     person: Person
 }

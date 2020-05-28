@@ -31,7 +31,7 @@ describe('people tests', () => {
   it('should return a list of cast members', async () => {
     const expected = [
       {
-        id: 1,
+        id: '52fe446ec3a368484e022aad',
         character: 'Eddie Marino',
         person: {
           id: 5694,

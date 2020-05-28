@@ -15,7 +15,7 @@ const castMapper = async (cast) => {
   for (const member of cast) {
     const imageUrl = await buildImage(member.profile_path, 'original');
     const mappedMember = {
-      id: member.cast_id,
+      id: member.credit_id,
       character: member.character,
       person: await personMapper(member, imageUrl),
     };
