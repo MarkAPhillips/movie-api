@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import { BASE_URL } from '../../constants';
-import get from '../services/restService';
-import { buildImage } from '../services/helpers/imageBuilder';
+import get from '../../services/restService';
+import { buildImage } from '../../services/helpers/imageBuilder';
 
 const personMapper = async (item, imageUrl) => ({
   id: item.id,

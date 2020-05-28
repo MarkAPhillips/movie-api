@@ -12,9 +12,9 @@
     "start": "nodemon --exec babel-node -r dotenv/config src/index.js",
     "start:dev": "babel-node src/index.js",
     "start:docker": "npm run docker:build && npm run docker:run",
-    "start:scheduler": "babel-node -r dotenv/config scheduler",
-    "lint": "eslint --quiet \"src/**\"",
-    "scheduler": "babel-node scheduler", 
+    "start:tasks": "babel-node -r dotenv/config tasks",
+    "lint": "eslint --quiet \"**/*.js\"",
+    "tasks": "babel-node tasks",
     "docker:build": "docker build -f ./build/Dockerfile -t movie-api .",
     "docker:run": "docker rm -f movie-api &> /dev/null || true && docker run --name movie-api --env-file .env -p 4000:4000 movie-api"
   },
@@ -32,7 +32,6 @@
   "dependencies": {
     "apollo-server": "^2.12.0",
     "colors": "^1.4.0",
-    "cron": "^1.8.2",
     "graphql": "^15.0.0",
     "graphql-import": "^1.0.2",
     "graphql-iso-date": "^3.6.1",

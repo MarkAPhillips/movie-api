@@ -1,5 +1,5 @@
 import { BASE_URL } from '../../constants';
-import get from '../services/restService';
+import get from '../../services/restService';
 
 const imageConfiguration = async () => {
   const url = `${BASE_URL}/configuration?`;

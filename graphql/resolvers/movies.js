@@ -1,6 +1,6 @@
 import {
   getTrending, getPopular, getMovieById, getSimilar,
-} from '../services/movieService';
+} from '../../services/movieService';
 
 export const trending = async (root, { imageSize, period }) => getTrending(imageSize, period);
 

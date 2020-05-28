@@ -1,5 +1,5 @@
 import cast from './people';
-import get from '../services/restService';
+import get from '../../services/restService';
 
 const mockData = {
   id: 23587,
@@ -17,14 +17,14 @@ const mockData = {
   ],
 };
 
-jest.mock('../services/helpers/imageBuilder', () => ({
+jest.mock('../../services/helpers/imageBuilder', () => ({
   buildImage: jest.fn(() => Promise.resolve(
     'https://image.tmdb.org/t/p/original/vGDifxN2PnO69rnpg6FoWkocFCD.jpg',
   )),
 }));
 
 /** Method for mocking an ES6 default export */
-jest.mock('../services/restService');
+jest.mock('../../services/restService');
 get.mockImplementation(() => Promise.resolve(mockData));
 
 describe('people tests', () => {

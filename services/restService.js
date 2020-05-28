@@ -2,7 +2,7 @@
 import fetch from 'node-fetch';
 import colors from 'colors/safe';
 import { handleResponse, handleError } from './fetchHandler';
-import { ENV_VARS } from '../../constants';
+import { ENV_VARS } from '../constants';
 
 const get = async (url) => {
   const urlWithApiKey = `${url}api_key=${ENV_VARS.API_KEY}`;
