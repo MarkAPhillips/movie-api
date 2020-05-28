@@ -1,6 +1,6 @@
 {
   "name": "movie-api",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Movie API build using GraphQL",
   "main": "index.js",
   "scripts": {
