@@ -1,20 +1,19 @@
-import colors from 'colors/safe';
+/* eslint-disable no-console */
 import first from 'lodash/first';
 import FeaturedMovieModel from '../db/models/featuredMovie';
 import { connect, disconnect } from '../db';
 import { getPopular } from '../services/movieService';
 
 const tasks = async () => {
-  console.log(colors.yellow(`Starting feature job at ${new Date()}`));
+  console.log(`Starting feature job at ${new Date()}`);
   const results = await getPopular();
   const { id: movieId } = first(results);
-  console.log(colors.yellow(`Fetching movie data completed at ${new Date()}`));
+  console.log(`Fetching movie data completed at ${new Date()}`);
   connect();
   const featuredMovie = new FeaturedMovieModel({ movieId });
   await featuredMovie.save();
   disconnect();
-  console.log(colors.green(`Completed feature job at ${new Date()}`));
+  console.log(`Completed feature job at ${new Date()}`);
 };
-
 
 tasks();

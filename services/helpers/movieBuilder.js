@@ -11,6 +11,9 @@ const movieMapper = (item, imageUrl) => (
     originalLanguage: item.original_language,
     popularity: item.popularity,
     imageUrl,
+    runTime: item.runtime || null,
+    homePage: item.homePage || null,
+    genres: item.genres || [],
   }
 );
 
