@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import NodeCache from 'node-cache';
 import imageConfiguration from '../../api/resolvers/configuration';

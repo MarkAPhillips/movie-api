@@ -15,6 +15,7 @@ const mockData = [
     vote_average: 6,
     overview: 'The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet Earth, astronaut Roy McBride undertakes a mission across the immensity of space and its many perils to uncover the truth about a lost expedition that decades before boldly faced emptiness and silence in search of the unknown.',
     release_date: '2019-09-17',
+    runtime: 93,
   },
 ];
 
@@ -30,6 +31,9 @@ describe('movieBuilder tests', () => {
       originalLanguage: 'en',
       popularity: 606.107,
       imageUrl: 'https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg',
+      homePage: null,
+      runTime: 93,
+      genres: [],
     }];
     const movies = await buildMovies(mockData, 'w154');
     expect(movies).toEqual(expected);

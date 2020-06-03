@@ -38,6 +38,11 @@ type MovieEdge {
     node: Movie!
 }
 
+type Genre {
+    id: ID!
+    name: String!
+}
+
 type Movie {
     id: ID!
     title: String!
@@ -50,6 +55,9 @@ type Movie {
     imageUrl: String
     similar: [Movie!]
     cast: [Cast!]
+    genres: [Genre!]
+    runTime: Int
+    homePage: String
 }
 
 type ImageConfiguration {
