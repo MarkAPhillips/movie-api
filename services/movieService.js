@@ -1,14 +1,6 @@
 import { BASE_URL } from '../constants';
-import get from './restService';
-import { buildMovies, buildMovie } from './helpers/movieBuilder';
 import castBuilder from './helpers/castMemberBuilder';
-
-const movieBuilder = async (url, imageSize = 'original') => {
-  const data = await get(url);
-  const { results } = data;
-  return !results
-    ? buildMovie(data, imageSize) : buildMovies(results, imageSize);
-};
+import movieBuilder from './helpers/movieBuilder';
 
 export const getTrending = async (imageSize, period = 'day') => {
   const url = `${BASE_URL}/trending/movie/${period}?`;

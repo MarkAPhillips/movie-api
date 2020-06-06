@@ -1,4 +1,5 @@
 import { buildImage } from './imageBuilder';
+import get from '../restService';
 
 const movieMapper = (item, imageUrl) => (
   {
@@ -32,3 +33,12 @@ export const buildMovies = async (movies, imageSize) => {
   }
   return output;
 };
+
+const movieBuilder = async (url, imageSize = 'original') => {
+  const data = await get(url);
+  const { results } = data;
+  return !results
+    ? buildMovie(data, imageSize) : buildMovies(results, imageSize);
+};
+
+export default movieBuilder;
