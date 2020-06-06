@@ -1,6 +1,7 @@
 import { BASE_URL } from '../constants';
 import get from './restService';
 import { buildMovies, buildMovie } from './helpers/movieBuilder';
+import castBuilder from './helpers/castMemberBuilder';
 
 const movieBuilder = async (url, imageSize = 'original') => {
   const data = await get(url);
@@ -27,4 +28,14 @@ export const getMovieById = async (imageSize, id) => {
 export const getSimilar = async (id) => {
   const url = `${BASE_URL}/movie/${id}/similar?`;
   return movieBuilder(url);
+};
+
+export const getRecommended = async (id) => {
+  const url = `${BASE_URL}/movie/${id}/recommendations?`;
+  return movieBuilder(url);
+};
+
+export const getCastMembers = async (id) => {
+  const url = `${BASE_URL}/movie/${id}/credits?`;
+  return castBuilder(url);
 };

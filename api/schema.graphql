@@ -54,6 +54,7 @@ type Movie {
     popularity: Float!
     imageUrl: String
     similar: [Movie!]
+    recommended: [Movie!]
     cast: [Cast!]
     genres: [Genre!]
     runTime: Int

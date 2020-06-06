@@ -1,5 +1,5 @@
 import cast from './people';
-import getCastMembers from '../../services/peopleService';
+import { getCastMembers } from '../../services/movieService';
 
 const mockData = [
   {

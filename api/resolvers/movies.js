@@ -1,5 +1,5 @@
 import {
-  getTrending, getPopular, getMovieById, getSimilar,
+  getTrending, getPopular, getMovieById, getSimilar, getRecommended,
 } from '../../services/movieService';
 
 export const trending = async (root, { imageSize, period }) => getTrending(imageSize, period);
@@ -12,4 +12,10 @@ export const similar = async (root) => {
   if (!root.id) return null;
   const { id } = root;
   return getSimilar(id);
+};
+
+export const recommended = async (root) => {
+  if (!root.id) return null;
+  const { id } = root;
+  return getRecommended(id);
 };
