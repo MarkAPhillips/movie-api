@@ -1,5 +1,7 @@
 import movieBuilder from './helpers/movieBuilder';
 import castBuilder from './helpers/castMemberBuilder';
+import certificationBuilder from './helpers/certificationBuilder';
+
 import {
   getTrending,
   getPopular,
@@ -7,6 +9,7 @@ import {
   getRecommended,
   getMovieById,
   getCastMembers,
+  getCertifications,
 } from './movieService';
 
 const mockData = [];
@@ -18,6 +21,8 @@ movieBuilder.mockImplementation(() => Promise.resolve(mockData));
 jest.mock('./helpers/castMemberBuilder');
 castBuilder.mockImplementation(() => Promise.resolve(mockData));
 
+jest.mock('./helpers/certificationBuilder');
+certificationBuilder.mockImplementation(() => Promise.resolve(mockData));
 
 describe('movieService tests', () => {
   afterEach(() => {
@@ -57,5 +62,10 @@ describe('movieService tests', () => {
   it('should verify castMemberBuilder is called with the correct params for getCastMembers', async () => {
     getCastMembers(1234);
     expect(castBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/credits?');
+  });
+
+  it('should verify certificationBuilder is called with the correct params for getCertifications', async () => {
+    getCertifications(1234);
+    expect(certificationBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/release_dates?');
   });
 });
