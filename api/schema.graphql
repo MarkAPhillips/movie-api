@@ -43,6 +43,11 @@ type Genre {
     name: String!
 }
 
+type Certification {
+    countryCode: String!
+    certification: String!
+}
+
 type Movie {
     id: ID!
     title: String!
@@ -59,6 +64,7 @@ type Movie {
     genres: [Genre!]
     runTime: Int
     homePage: String
+    certifications: [Certification!]
 }
 
 type ImageConfiguration {

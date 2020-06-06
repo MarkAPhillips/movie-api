@@ -1,6 +1,7 @@
 import { BASE_URL } from '../constants';
 import castBuilder from './helpers/castMemberBuilder';
 import movieBuilder from './helpers/movieBuilder';
+import certificationBuilder from './helpers/certificationBuilder';
 
 export const getTrending = async (imageSize, period = 'day') => {
   const url = `${BASE_URL}/trending/movie/${period}?`;
@@ -30,4 +31,9 @@ export const getRecommended = async (id) => {
 export const getCastMembers = async (id) => {
   const url = `${BASE_URL}/movie/${id}/credits?`;
   return castBuilder(url);
+};
+
+export const getCertifications = async (id) => {
+  const url = `${BASE_URL}/movie/${id}/release_dates?`;
+  return certificationBuilder(url);
 };

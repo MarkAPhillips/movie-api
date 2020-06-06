@@ -97,7 +97,7 @@ query {
 query {
   search(filter:{ searchText:"sharknado"}, page:1) {
     totalCount
-  	page
+    page
     noOfPages
     edges {
       node {
@@ -147,6 +147,10 @@ query {
       recommended {
         id
         title
+      }
+      certifications {
+        countryCode
+        certification
       }
       cast @include (if:$showCast){
         id,
