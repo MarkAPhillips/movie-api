@@ -1,4 +1,4 @@
-import getCastMembers from '../../services/peopleService';
+import { getCastMembers } from '../../services/movieService';
 
 const cast = async (root) => {
   if (!root.id) return null;

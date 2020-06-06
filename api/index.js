@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
 import { GraphQLDate } from 'graphql-iso-date';
 import {
-  trending, popular, movie, similar,
+  trending, popular, movie, similar, recommended,
 } from './resolvers/movies';
 import cast from './resolvers/people';
 import search from './resolvers/search';
@@ -19,6 +19,7 @@ const resolvers = {
   },
   Movie: {
     similar,
+    recommended,
     cast,
   },
 };

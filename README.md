@@ -124,37 +124,43 @@ query {
 
 ```
  query {
-    movie(id: 545609) {
+    movie(id: 545609, showCast: $showCast) {
+      id,
+      title,
+      overview,
+      imageUrl,
+      voteAverage,
+      popularity,
+      voteCount,
+      releaseDate,
+      originalLanguage,
+      runTime,
+      genres {
         id,
-        title,
-        overview,
-        imageUrl,
-        voteAverage,
-        popularity,
-        voteCount,
-        releaseDate,
-        originalLanguage,
-        runTime,
-        genres {
+        name,
+      }
+      homePage,
+      similar {
+        id
+        title
+      }
+      recommended {
+        id
+        title
+      }
+      cast @include (if:$showCast){
+        id,
+        character
+        person {
           id,
           name,
+          imageUrl,
         }
-        homePage,
-        similar {
-          id
-          title
-        }
-        cast @include (if:$showCast){
-          id,
-          character
-          person {
-            id,
-            name,
-            imageUrl,
-          }
-      }
+    }
   }
-  ```
+```
+
+Recommended and similar movies can contain an array of Movie objects.
 
 The above search pagination is a hybrid based on standard [relay cursor pagination](https://relay.dev/graphql/connections.htm) and limitations in the current MovieDB REST API. 
 

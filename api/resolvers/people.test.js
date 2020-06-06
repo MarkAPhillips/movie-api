@@ -1,5 +1,5 @@
 import cast from './people';
-import getCastMembers from '../../services/peopleService';
+import { getCastMembers } from '../../services/movieService';
 
 const mockData = [
   {
@@ -14,7 +14,7 @@ const mockData = [
 ];
 
 /** Method for mocking an ES6 default export */
-jest.mock('../../services/peopleService');
+jest.mock('../../services/movieService');
 getCastMembers.mockImplementation(() => Promise.resolve(mockData));
 
 describe('people tests', () => {
