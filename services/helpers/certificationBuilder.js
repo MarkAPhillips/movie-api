@@ -13,7 +13,7 @@ const certificationBuilder = async (url) => {
   const data = await get(url);
   const { results } = data;
   const mapped = results.map((item) => certificationMapper(item));
-  return mapped.filter((item) => item.certification !== '');
+  return mapped.filter((item) => item.certification !== '') || [];
 };
 
 export default certificationBuilder;
