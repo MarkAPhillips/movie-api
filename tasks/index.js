@@ -2,11 +2,11 @@
 import first from 'lodash/first';
 import FeaturedMovieModel from '../db/models/featuredMovie';
 import { connect, disconnect } from '../db';
-import { getPopular } from '../services/movieService';
+import { getTrending } from '../services/movieService';
 
 const tasks = async () => {
   console.log(`Starting feature job at ${new Date()}`);
-  const results = await getPopular();
+  const results = await getTrending();
   const { id: movieId } = first(results);
   console.log(`Fetching movie data completed at ${new Date()}`);
   connect();
