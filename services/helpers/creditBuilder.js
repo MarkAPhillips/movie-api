@@ -8,6 +8,12 @@ const personMapper = async (item, imageUrl) => ({
   imageUrl,
 });
 
+const crewMapper = (crew) => crew.map((item) => ({
+  id: item.credit_id,
+  job: item.job,
+  name: item.name,
+}));
+
 const castMapper = async (cast) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
@@ -23,10 +29,12 @@ const castMapper = async (cast) => {
   return output;
 };
 
-const castBuilder = async (url) => {
+const creditBuilder = async (url) => {
   const data = await get(url);
-  const { cast } = data;
-  return castMapper(cast);
+  const { cast, crew } = data;
+  const mappedCast = castMapper(cast);
+  const mappedCrew = crew ? crewMapper(crew) : [];
+  return { crew: mappedCrew, cast: mappedCast };
 };
 
-export default castBuilder;
+export default creditBuilder;

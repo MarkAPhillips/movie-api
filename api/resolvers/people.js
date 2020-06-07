@@ -1,9 +1,9 @@
-import { getCastMembers } from '../../services/movieService';
+import { getMovieCredits } from '../../services/movieService';
 
-const cast = async (root) => {
+const credits = async (root) => {
   if (!root.id) return null;
   const { id } = root;
-  return getCastMembers(id);
+  return getMovieCredits(id);
 };
 
-export default cast;
+export default credits;
