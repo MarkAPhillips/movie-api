@@ -48,6 +48,17 @@ type Certification {
     certification: String!
 }
 
+type Crew {
+    id: String!
+    job: String
+    name: String!
+}
+
+type Credits {
+    cast: [Cast!]
+    crew: [Crew!]
+}
+
 type Movie {
     id: ID!
     title: String!
@@ -60,7 +71,7 @@ type Movie {
     imageUrl: String
     similar: [Movie!]
     recommended: [Movie!]
-    cast: [Cast!]
+    credits: Credits
     genres: [Genre!]
     runTime: Int
     homePage: String

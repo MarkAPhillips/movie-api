@@ -1,5 +1,5 @@
 import movieBuilder from './helpers/movieBuilder';
-import castBuilder from './helpers/castMemberBuilder';
+import creditBuilder from './helpers/creditBuilder';
 import certificationBuilder from './helpers/certificationBuilder';
 
 import {
@@ -8,7 +8,7 @@ import {
   getSimilar,
   getRecommended,
   getMovieById,
-  getCastMembers,
+  getMovieCredits,
   getCertifications,
 } from './movieService';
 
@@ -18,8 +18,8 @@ const mockData = [];
 jest.mock('./helpers/movieBuilder');
 movieBuilder.mockImplementation(() => Promise.resolve(mockData));
 
-jest.mock('./helpers/castMemberBuilder');
-castBuilder.mockImplementation(() => Promise.resolve(mockData));
+jest.mock('./helpers/creditBuilder');
+creditBuilder.mockImplementation(() => Promise.resolve(mockData));
 
 jest.mock('./helpers/certificationBuilder');
 certificationBuilder.mockImplementation(() => Promise.resolve(mockData));
@@ -59,9 +59,9 @@ describe('movieService tests', () => {
     expect(movieBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234?', 'original');
   });
 
-  it('should verify castMemberBuilder is called with the correct params for getCastMembers', async () => {
-    getCastMembers(1234);
-    expect(castBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/credits?');
+  it('should verify creditBuilder is called with the correct params for getMovieCredits', async () => {
+    getMovieCredits(1234);
+    expect(creditBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/credits?');
   });
 
   it('should verify certificationBuilder is called with the correct params for getCertifications', async () => {

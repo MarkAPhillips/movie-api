@@ -1,5 +1,5 @@
 import { BASE_URL } from '../constants';
-import castBuilder from './helpers/castMemberBuilder';
+import creditBuilder from './helpers/creditBuilder';
 import movieBuilder from './helpers/movieBuilder';
 import certificationBuilder from './helpers/certificationBuilder';
 
@@ -28,9 +28,9 @@ export const getRecommended = async (id) => {
   return movieBuilder(url);
 };
 
-export const getCastMembers = async (id) => {
+export const getMovieCredits = async (id) => {
   const url = `${BASE_URL}/movie/${id}/credits?`;
-  return castBuilder(url);
+  return creditBuilder(url);
 };
 
 export const getCertifications = async (id) => {

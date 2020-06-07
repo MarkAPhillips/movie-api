@@ -152,13 +152,20 @@ query {
         countryCode
         certification
       }
-      cast @include (if:$showCast){
-        id,
-        character
-        person {
-          id,
-          name,
-          imageUrl,
+      credits {
+        crew {
+          id
+          name
+          job
+        }
+        cast @include(if: $showCast) {
+          id
+          character
+          person {
+            id
+            name
+            imageUrl
+          }
         }
     }
   }
