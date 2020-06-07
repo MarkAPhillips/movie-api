@@ -33,7 +33,7 @@ const creditBuilder = async (url) => {
   const data = await get(url);
   const { cast, crew } = data;
   const mappedCast = castMapper(cast);
-  const mappedCrew = crew ? crewMapper(crew.slice(0, 10)) : [];
+  const mappedCrew = crew ? crewMapper(crew) : [];
   return { crew: mappedCrew, cast: mappedCast };
 };
 
