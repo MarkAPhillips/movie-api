@@ -2,9 +2,9 @@ import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
 import { GraphQLDate } from 'graphql-iso-date';
 import {
-  trending, popular, movie, similar, recommended, certifications,
+  trending, popular, movie, similar, recommended, certifications, credits,
 } from './resolvers/movies';
-import credits from './resolvers/people';
+import { person } from './resolvers/person';
 import search from './resolvers/search';
 import imageConfiguration from './resolvers/configuration';
 
@@ -16,12 +16,19 @@ const resolvers = {
     popular,
     movie,
     search,
+    person,
   },
   Movie: {
     similar,
     recommended,
     credits,
     certifications,
+  },
+  PersonIdentifier: {
+    // eslint-disable-next-line no-underscore-dangle
+    __resolveType(root) {
+      return root.biography ? 'Person' : 'PersonMovieCredits';
+    },
   },
 };
 

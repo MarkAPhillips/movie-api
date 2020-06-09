@@ -1,7 +1,7 @@
 import { BASE_URL } from '../constants';
-import creditBuilder from './helpers/creditBuilder';
-import movieBuilder from './helpers/movieBuilder';
-import certificationBuilder from './helpers/certificationBuilder';
+import creditBuilder from './builders/creditBuilder';
+import movieBuilder from './builders/movieBuilder';
+import certificationBuilder from './builders/certificationBuilder';
 
 export const getTrending = async (imageSize, period = 'day') => {
   const url = `${BASE_URL}/trending/movie/${period}?`;

@@ -2,7 +2,7 @@
 import get from '../restService';
 import { buildImage } from './imageBuilder';
 
-const personMapper = async (item, imageUrl) => ({
+const personMapper = (item, imageUrl) => ({
   id: item.id,
   name: item.name,
   imageUrl,
@@ -22,7 +22,7 @@ const castMapper = async (cast) => {
     const mappedMember = {
       id: member.credit_id,
       character: member.character,
-      person: await personMapper(member, imageUrl),
+      person: personMapper(member, imageUrl),
     };
     output.push(mappedMember);
   }

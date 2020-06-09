@@ -1,6 +1,6 @@
-import movieBuilder from './helpers/movieBuilder';
-import creditBuilder from './helpers/creditBuilder';
-import certificationBuilder from './helpers/certificationBuilder';
+import movieBuilder from './builders/movieBuilder';
+import creditBuilder from './builders/creditBuilder';
+import certificationBuilder from './builders/certificationBuilder';
 
 import {
   getTrending,
@@ -15,13 +15,13 @@ import {
 const mockData = [];
 
 // mocks
-jest.mock('./helpers/movieBuilder');
+jest.mock('./builders/movieBuilder');
 movieBuilder.mockImplementation(() => Promise.resolve(mockData));
 
-jest.mock('./helpers/creditBuilder');
+jest.mock('./builders/creditBuilder');
 creditBuilder.mockImplementation(() => Promise.resolve(mockData));
 
-jest.mock('./helpers/certificationBuilder');
+jest.mock('./builders/certificationBuilder');
 certificationBuilder.mockImplementation(() => Promise.resolve(mockData));
 
 describe('movieService tests', () => {

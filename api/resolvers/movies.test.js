@@ -1,4 +1,4 @@
-import credits from './people';
+import { credits } from './movies';
 import { getMovieCredits } from '../../services/movieService';
 
 const mockData = [
@@ -29,8 +29,8 @@ const mockData = [
 jest.mock('../../services/movieService');
 getMovieCredits.mockImplementation(() => Promise.resolve(mockData));
 
-describe('people tests', () => {
-  it('should return a list of cast members', async () => {
+describe('movies tests', () => {
+  it('should return a list of cast members for a movie', async () => {
     const movies = await credits({ id: 23587 });
     expect(getMovieCredits).toHaveBeenCalledWith(23587);
     expect(movies).toEqual(mockData);
