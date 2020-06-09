@@ -171,11 +171,11 @@ query {
   }
 ```
 
-6. [Get a Person By Id] (https://developers.themoviedb.org/3/people/get-person-details)
+6. [Get a Person By Id](https://developers.themoviedb.org/3/people/get-person-details)
 
 ```
 query{
-  person(id: 10990) {
+  person(imageSize: "w154", id: 10990) {
     id,
     name,
     biography,
