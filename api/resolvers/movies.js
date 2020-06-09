@@ -1,5 +1,11 @@
 import {
-  getTrending, getPopular, getMovieById, getSimilar, getRecommended, getCertifications,
+  getTrending,
+  getPopular,
+  getMovieById,
+  getSimilar,
+  getRecommended,
+  getCertifications,
+  getMovieCredits,
 } from '../../services/movieService';
 
 export const trending = async (root, { imageSize, period }) => getTrending(imageSize, period);
@@ -24,4 +30,10 @@ export const certifications = async (root) => {
   if (!root.id) return null;
   const { id } = root;
   return getCertifications(id);
+};
+
+export const credits = async (root) => {
+  if (!root.id) return null;
+  const { id } = root;
+  return getMovieCredits(id);
 };

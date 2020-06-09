@@ -2,8 +2,8 @@
 /* eslint-disable consistent-return */
 import { BASE_URL } from '../../constants';
 import get from '../../services/restService';
-import { buildMovies } from '../../services/helpers/movieBuilder';
-import getPageInfo from '../../services/helpers/pageInfoBuilder';
+import { buildMovies } from '../../services/builders/movieBuilder';
+import getPageInfo from '../../services/builders/pageInfoBuilder';
 
 const getEdges = async (data, imageSize) => {
   const { results } = data;
