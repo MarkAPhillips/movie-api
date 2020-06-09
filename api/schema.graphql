@@ -22,16 +22,32 @@ type MovieConnection {
     noOfPages: Int!
 } 
 
-type Person {
+interface PersonIdentifier {
     id: ID!
     name: String!
     imageUrl: String
 }
 
+type PersonMovieCredits implements PersonIdentifier {
+    id: ID!
+    name: String!
+    imageUrl: String
+}
+
+type Person implements PersonIdentifier {
+    id: ID!
+    name: String!
+    imageUrl: String
+    biography: String
+    birthDate: Date
+    deathDate: Date
+    placeOfBirth: String
+}
+
 type Cast {
     id: String!
     character: String!
-    person: Person
+    person: PersonMovieCredits
 }
 
 type MovieEdge {
@@ -54,7 +70,7 @@ type Crew {
     name: String!
 }
 
-type Credits {
+type MovieCredits {
     cast: [Cast!]
     crew: [Crew!]
 }
@@ -71,7 +87,7 @@ type Movie {
     imageUrl: String
     similar: [Movie!]
     recommended: [Movie!]
-    credits: Credits
+    credits: MovieCredits
     genres: [Genre!]
     runTime: Int
     homePage: String
@@ -89,4 +105,5 @@ type Query {
     trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
     popular(imageSize: String = "original"): [Movie!]!
     movie(imageSize: String = "original", id: Int!, showCast: Boolean = true): Movie!
+    person(imageSize: String = "original", id: Int!): Person!
 }

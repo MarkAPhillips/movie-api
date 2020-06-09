@@ -22,6 +22,12 @@ const resolvers = {
     credits,
     certifications,
   },
+  PersonIdentifier: {
+    // eslint-disable-next-line no-underscore-dangle
+    __resolveType(root) {
+      return root.biography ? 'Person' : 'PersonMovieCredits';
+    },
+  },
 };
 
 const server = new ApolloServer({
