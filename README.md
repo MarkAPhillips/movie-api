@@ -171,6 +171,22 @@ query {
   }
 ```
 
+6. [Get a Person By Id] (https://developers.themoviedb.org/3/people/get-person-details)
+
+```
+query{
+  person(id: 10990) {
+    id,
+    name,
+    biography,
+    birthDate,
+    deathDate,
+    imageUrl,
+    placeOfBirth,
+  }
+}
+```
+
 Recommended and similar movies can contain an array of Movie objects.
 
 The above search pagination is a hybrid based on standard [relay cursor pagination](https://relay.dev/graphql/connections.htm) and limitations in the current MovieDB REST API. 
