@@ -35,6 +35,7 @@
     "graphql-import": "^1.0.2",
     "graphql-iso-date": "^3.6.1",
     "lodash": "^4.17.15",
+    "moment": "^2.26.0",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.16",
     "node-cache": "^5.1.0",

@@ -42,6 +42,7 @@ type Person implements PersonIdentifier {
     birthDate: Date
     deathDate: Date
     placeOfBirth: String
+    age: Int
 }
 
 type Cast {

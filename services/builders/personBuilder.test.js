@@ -28,6 +28,9 @@ jest.mock('./imageBuilder', () => ({
   buildImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/wwvthcEDo6WHOHumcoh1tT1IaoB.jpg')),
 }));
 
+/** Mock current datetime */
+Date.now = jest.fn(() => new Date('2018-05-13T12:33:37.000Z'));
+
 describe('personBuilder tests', () => {
   it('should return a person', async () => {
     const expected = {
@@ -37,6 +40,7 @@ describe('personBuilder tests', () => {
       biography: 'Robert Michael Morris is an American actor.',
       birthDate: '1973-06-12',
       deathDate: null,
+      age: 44,
       placeOfBirth: 'Miami, Florida, USA',
     };
     const person = await personBuilder(url, 'w154');
