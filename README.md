@@ -47,15 +47,15 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
 ```
  query {
     trending (imageSize: "w154", period: week) {
-      id,
-      title,
-      overview,
-      imageUrl,
-      voteAverage,
-      popularity,
-      voteCount,
-      releaseDate,
-      originalLanguage,
+      id
+      title
+      overview
+      imageUrl
+      voteAverage
+      popularity
+      voteCount
+      releaseDate
+      originalLanguage
     }
   }
 ```
@@ -67,15 +67,15 @@ Options are day|week
 ```
  query {
     popular(imageSize: "w154") {
-      id,
-      title,
-      overview,
-      imageUrl,
-      voteAverage,
-      popularity,
-      voteCount,
-      releaseDate,
-      originalLanguage,
+      id
+      title
+      overview
+      imageUrl
+      voteAverage
+      popularity
+      voteCount
+      releaseDate
+      originalLanguage
     }
   }
 ```
@@ -85,8 +85,8 @@ Options are day|week
 ```
 query {
     imageConfiguration {
-      baseUrl,
-      imageSizes,
+      baseUrl
+      imageSizes
     }
   }
 ```
@@ -101,15 +101,15 @@ query {
     noOfPages
     edges {
       node {
-        id,
-        title,
-        overview,
-        imageUrl,
-        voteAverage,
-        popularity,
-        voteCount,
-        releaseDate,
-        originalLanguage,
+        id
+        title
+        overview
+        imageUrl
+        voteAverage
+        popularity
+        voteCount
+        releaseDate
+        originalLanguage
       }
     }
     pageInfo {
@@ -125,19 +125,19 @@ query {
 ```
  query {
     movie(id: 545609, showCast: $showCast) {
-      id,
-      title,
-      overview,
-      imageUrl,
-      voteAverage,
-      popularity,
-      voteCount,
-      releaseDate,
-      originalLanguage,
-      runTime,
+      id
+      title
+      overview
+      imageUrl
+      voteAverage
+      popularity
+      voteCount
+      releaseDate
+      originalLanguage
+      runTime
       genres {
-        id,
-        name,
+        id
+        name
       }
       homePage,
       similar {
@@ -176,13 +176,14 @@ query {
 ```
 query{
   person(imageSize: "w154", id: 10990) {
-    id,
-    name,
-    biography,
-    birthDate,
-    deathDate,
-    imageUrl,
-    placeOfBirth,
+    id
+    name
+    biography
+    birthDate
+    deathDate
+    age
+    imageUrl
+    placeOfBirth
   }
 }
 ```

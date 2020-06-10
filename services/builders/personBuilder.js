@@ -1,5 +1,14 @@
+import moment from 'moment';
 import { buildImage } from './imageBuilder';
 import get from '../restService';
+
+const getAge = (birthDate, deathDate) => {
+  const dateFormat = 'YYYY-MM-DD';
+  if (deathDate != null && birthDate != null) {
+    return moment(deathDate, dateFormat).diff(moment(birthDate, dateFormat), 'years');
+  }
+  return birthDate !== null ? moment().diff(moment(birthDate, dateFormat), 'years') : null;
+};
 
 const personMapper = (item, imageUrl) => (
   {
@@ -10,6 +19,7 @@ const personMapper = (item, imageUrl) => (
     birthDate: item.birthday,
     deathDate: item.deathday,
     placeOfBirth: item.place_of_birth,
+    age: getAge(item.birthday, item.deathday),
   }
 );
 
