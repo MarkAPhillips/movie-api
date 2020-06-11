@@ -184,6 +184,20 @@ query{
     age
     imageUrl
     placeOfBirth
+    credits {
+      id
+      character
+      movie {
+        title
+        overview
+        imageUrl
+        voteAverage
+        popularity
+        voteCount
+        releaseDate
+        originalLanguage
+      }
+    }
   }
 }
 ```
