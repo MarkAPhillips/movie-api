@@ -4,7 +4,7 @@ import { GraphQLDate } from 'graphql-iso-date';
 import {
   trending, popular, movie, similar, recommended, certifications, credits,
 } from './resolvers/movies';
-import { person } from './resolvers/person';
+import { person, movieCredits } from './resolvers/person';
 import search from './resolvers/search';
 import imageConfiguration from './resolvers/configuration';
 
@@ -23,6 +23,9 @@ const resolvers = {
     recommended,
     credits,
     certifications,
+  },
+  Person: {
+    credits: movieCredits,
   },
   PersonIdentifier: {
     // eslint-disable-next-line no-underscore-dangle

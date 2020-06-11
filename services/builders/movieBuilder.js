@@ -1,7 +1,7 @@
 import { buildImage } from './imageBuilder';
 import get from '../restService';
 
-const movieMapper = (item, imageUrl) => (
+export const movieMapper = (item, imageUrl) => (
   {
     id: item.id,
     title: item.title,

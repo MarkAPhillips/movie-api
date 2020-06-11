@@ -1,7 +1,7 @@
 import movieBuilder from './movieBuilder';
 import get from '../restService';
 
-const url = 'https://api.themoviedb.org/3/movie/23587/recommendations';
+const url = 'https://api.themoviedb.org/3/movie/23587/recommendations?';
 
 const mockData = {
   results: [
