@@ -27,6 +27,28 @@ const mockData = {
       overview: 'An unusual explorer named Gum and his kindly niece adopt three orphans -- Pauline, Petrova and Posy -- and raise them as sisters in 1930s London. But the girls must fend for themselves when Gum doesn\'t return from one of his adventures. Together, they nurture their passions for acting, aviation and ballet in this charming TV adaptation of Noel Streatfield\'s novel.',
       poster_path: '/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg',
     },
+    {
+      character: 'Pauline Fossil',
+      credit_id: '52fe43e9c3a368484e005729',
+      release_date: null,
+      vote_count: 194,
+      video: false,
+      adult: false,
+      vote_average: 6.4,
+      title: 'Ballet Shoes',
+      genre_ids: [
+        18,
+        10751,
+        10770,
+      ],
+      original_language: 'en',
+      original_title: 'Ballet Shoes',
+      popularity: 17.119,
+      id: 20497,
+      backdrop_path: null,
+      overview: 'An unusual explorer named Gum and his kindly niece adopt three orphans -- Pauline, Petrova and Posy -- and raise them as sisters in 1930s London. But the girls must fend for themselves when Gum doesn\'t return from one of his adventures. Together, they nurture their passions for acting, aviation and ballet in this charming TV adaptation of Noel Streatfield\'s novel.',
+      poster_path: '/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg',
+    },
   ],
 };
 

@@ -4,3 +4,5 @@ export const ENV_VARS = {
   API_KEY: process.env.API_KEY,
   DB_PWD: process.env.DB_PWD,
 };
+
+export const DATE_FORMAT = 'YYYY-MM-DD';
