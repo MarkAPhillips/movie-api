@@ -6,7 +6,7 @@ import { movieMapper } from './movieBuilder';
 import { DATE_FORMAT } from '../../constants';
 
 const currentMovies = (credit) => credit.release_date != null
-  || moment().diff(moment(credit.release_date, DATE_FORMAT), 'days') >= 0;
+  && moment().diff(moment(credit.release_date, DATE_FORMAT), 'days') >= 0;
 
 const castMapper = async (cast) => {
   const output = [];
