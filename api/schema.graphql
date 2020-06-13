@@ -38,7 +38,7 @@ type MoviePerson implements PersonIdentifier {
 
 type MovieCredits {
     id: String!
-    character: String!
+    character: String
     movie: Movie
 }
 
