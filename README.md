@@ -50,12 +50,15 @@ Browse to [GraphQL Playground](http://localhost:4000/) running locally
       id
       title
       overview
-      imageUrl
       voteAverage
       popularity
       voteCount
       releaseDate
       originalLanguage
+      images {
+        poster
+        backDrop
+      }
     }
   }
 ```
@@ -70,12 +73,15 @@ Options are day|week
       id
       title
       overview
-      imageUrl
       voteAverage
       popularity
       voteCount
       releaseDate
       originalLanguage
+      images {
+        poster
+        backDrop
+      }
     }
   }
 ```
@@ -104,12 +110,15 @@ query {
         id
         title
         overview
-        imageUrl
         voteAverage
         popularity
         voteCount
         releaseDate
         originalLanguage
+        images {
+          poster
+          backDrop
+        }
       }
     }
     pageInfo {
@@ -128,13 +137,16 @@ query {
       id
       title
       overview
-      imageUrl
       voteAverage
       popularity
       voteCount
       releaseDate
       originalLanguage
       runTime
+      images {
+        poster
+        backDrop
+      }
       genres {
         id
         name
@@ -196,6 +208,10 @@ query{
         voteCount
         releaseDate
         originalLanguage
+        images {
+          poster
+          backDrop
+        }
       }
     }
   }

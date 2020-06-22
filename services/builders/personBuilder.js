@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { buildImage } from './imageBuilder';
+import { buildPosterImage } from './imageBuilder';
 import get from '../restService';
 import { DATE_FORMAT } from '../../constants';
 
@@ -24,7 +24,7 @@ const personMapper = (item, imageUrl) => (
 );
 
 export const buildPerson = async (person, imageSize) => {
-  const imageUrl = await buildImage(person.profile_path, imageSize);
+  const imageUrl = await buildPosterImage(person.profile_path, imageSize);
   return personMapper(person, imageUrl);
 };
 

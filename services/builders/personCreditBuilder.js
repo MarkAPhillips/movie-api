@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import moment from 'moment';
 import get from '../restService';
-import { buildImage } from './imageBuilder';
+import { buildPosterImage, buildBackDropImage } from './imageBuilder';
 import { movieMapper } from './movieBuilder';
 import { DATE_FORMAT } from '../../constants';
 
@@ -12,11 +12,12 @@ const castMapper = async (cast) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const movie of cast) {
-    const imageUrl = await buildImage(movie.poster_path, 'original');
+    const poster = await buildPosterImage(movie.poster_path, 'original');
+    const backDrop = await buildBackDropImage(movie.backdrop_path);
     const mappedMovieCredit = {
       id: movie.credit_id,
       character: movie.character || null,
-      movie: movieMapper(movie, imageUrl),
+      movie: movieMapper(movie, poster, backDrop),
     };
     output.push(mappedMovieCredit);
   }

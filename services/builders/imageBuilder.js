@@ -1,24 +1,15 @@
 /* eslint-disable no-console */
-/* eslint-disable import/prefer-default-export */
-import NodeCache from 'node-cache';
-import imageConfiguration from '../../api/resolvers/configuration';
-
-const CACHE_KEY = '__movie_api_config__';
-const CACHE_EXPIRE_SECONDS = 86400; // 1 day in seconds
-const cache = new NodeCache();
+import getImageConfig from './configuration';
 
 /*
 Structure of image https://image.tmdb.org/t/p/w154/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 Return null if no poster path specified
 */
-export const buildImage = async (posterPath, width) => {
-  let cachedImageConfiguration = cache.get(CACHE_KEY);
+
+// TODO: Review these functions - possibly merge
+export const buildPosterImage = async (posterPath, width) => {
   try {
-    if (!cachedImageConfiguration) {
-      cachedImageConfiguration = await imageConfiguration();
-      cache.set(CACHE_KEY, cachedImageConfiguration, CACHE_EXPIRE_SECONDS);
-    }
-    const { baseUrl, imageSizes } = cachedImageConfiguration;
+    const { baseUrl, imageSizes } = await getImageConfig();
     const imageSize = imageSizes.find((item) => item === width);
     if (imageSize && posterPath) {
       return `${baseUrl}${imageSize}${posterPath}`;
@@ -28,6 +19,14 @@ export const buildImage = async (posterPath, width) => {
     }
   } catch (err) {
     console.log(`An Unhandled exception occurred ${err}`);
+  }
+  return null;
+};
+
+export const buildBackDropImage = async (backDropPath) => {
+  const { baseUrl } = await getImageConfig();
+  if (backDropPath) {
+    return `${baseUrl}original${backDropPath}`;
   }
   return null;
 };

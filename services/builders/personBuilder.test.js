@@ -25,7 +25,7 @@ jest.mock('../restService');
 get.mockImplementation(() => Promise.resolve(mockData));
 
 jest.mock('./imageBuilder', () => ({
-  buildImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/wwvthcEDo6WHOHumcoh1tT1IaoB.jpg')),
+  buildPosterImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/wwvthcEDo6WHOHumcoh1tT1IaoB.jpg')),
 }));
 
 /** Mock current datetime */

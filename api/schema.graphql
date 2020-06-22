@@ -30,6 +30,11 @@ interface PersonIdentifier {
     imageUrl: String
 }
 
+type Images {
+    poster: String
+    backDrop: String
+}
+
 type MoviePerson implements PersonIdentifier {
     id: ID!
     name: String!
@@ -102,6 +107,7 @@ type Movie {
     runTime: Int
     homePage: String
     certifications: [Certification!]
+    images: Images
 }
 
 type ImageConfiguration {
