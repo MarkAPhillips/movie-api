@@ -57,7 +57,8 @@ jest.mock('../restService');
 get.mockImplementation(() => Promise.resolve(mockData));
 
 jest.mock('./imageBuilder', () => ({
-  buildImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/original/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg')),
+  buildPosterImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/original/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg')),
+  buildBackDropImage: jest.fn(() => Promise.resolve(null)),
 }));
 
 describe('personCreditBuilder tests', () => {
@@ -78,6 +79,10 @@ describe('personCreditBuilder tests', () => {
         homePage: null,
         runTime: null,
         genres: [],
+        images: {
+          poster: 'https://image.tmdb.org/t/p/original/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg',
+          backDrop: null,
+        },
       },
     }];
     const movies = await personCreditBuilder(url);

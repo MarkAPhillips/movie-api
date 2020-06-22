@@ -1,7 +1,7 @@
-import { buildImage } from './imageBuilder';
+import { buildPosterImage, buildBackDropImage } from './imageBuilder';
 import get from '../restService';
 
-export const movieMapper = (item, imageUrl) => (
+export const movieMapper = (item, poster, backDrop) => (
   {
     id: item.id,
     title: item.title,
@@ -11,16 +11,21 @@ export const movieMapper = (item, imageUrl) => (
     releaseDate: item.release_date === '' ? null : item.release_date,
     originalLanguage: item.original_language,
     popularity: item.popularity,
-    imageUrl,
+    imageUrl: poster, // Deprecate this property
     runTime: item.runtime || null,
     homePage: item.homePage || null,
     genres: item.genres || [],
+    images: {
+      poster,
+      backDrop,
+    },
   }
 );
 
 export const buildMovie = async (movie, imageSize) => {
-  const imageUrl = await buildImage(movie.poster_path, imageSize);
-  return movieMapper(movie, imageUrl);
+  const poster = await buildPosterImage(movie.poster_path, imageSize);
+  const backDrop = await buildBackDropImage(movie.backdrop_path);
+  return movieMapper(movie, poster, backDrop);
 };
 
 export const buildMovies = async (movies, imageSize) => {

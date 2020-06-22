@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import get from '../restService';
-import { buildImage } from './imageBuilder';
+import { buildPosterImage } from './imageBuilder';
 
 const personMapper = (item, imageUrl) => ({
   id: item.id,
@@ -18,7 +18,7 @@ const castMapper = async (cast) => {
   const output = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const member of cast) {
-    const imageUrl = await buildImage(member.profile_path, 'original');
+    const imageUrl = await buildPosterImage(member.profile_path, 'original');
     const mappedMember = {
       id: member.credit_id,
       character: member.character,

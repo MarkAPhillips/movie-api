@@ -16,6 +16,7 @@ const mockData = {
       overview: 'The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet Earth, astronaut Roy McBride undertakes a mission across the immensity of space and its many perils to uncover the truth about a lost expedition that decades before boldly faced emptiness and silence in search of the unknown.',
       release_date: '2019-09-17',
       runtime: 93,
+      backdrop_path: null,
     },
   ],
 };
@@ -25,7 +26,8 @@ jest.mock('../restService');
 get.mockImplementation(() => Promise.resolve(mockData));
 
 jest.mock('./imageBuilder', () => ({
-  buildImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg')),
+  buildPosterImage: jest.fn(() => Promise.resolve('https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg')),
+  buildBackDropImage: jest.fn(() => Promise.resolve(null)),
 }));
 
 describe('movieBuilder tests', () => {
@@ -43,6 +45,10 @@ describe('movieBuilder tests', () => {
       homePage: null,
       runTime: 93,
       genres: [],
+      images: {
+        poster: 'https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg',
+        backDrop: null,
+      },
     }];
     const movies = await movieBuilder(url, 'w154');
     expect(get).toHaveBeenCalledWith(url);
