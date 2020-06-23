@@ -75,7 +75,6 @@ describe('personCreditBuilder tests', () => {
         releaseDate: '2008-08-26',
         originalLanguage: 'en',
         popularity: 17.119,
-        imageUrl: 'https://image.tmdb.org/t/p/original/bJAOuC0GLL1PHuefC8Ed8C0ja6m.jpg',
         homePage: null,
         runTime: null,
         genres: [],

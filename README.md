@@ -202,7 +202,6 @@ query{
       movie {
         title
         overview
-        imageUrl
         voteAverage
         popularity
         voteCount
