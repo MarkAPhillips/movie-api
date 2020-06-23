@@ -11,7 +11,6 @@ export const movieMapper = (item, poster, backDrop) => (
     releaseDate: item.release_date === '' ? null : item.release_date,
     originalLanguage: item.original_language,
     popularity: item.popularity,
-    imageUrl: poster, // Deprecate this property
     runTime: item.runtime || null,
     homePage: item.homePage || null,
     genres: item.genres || [],

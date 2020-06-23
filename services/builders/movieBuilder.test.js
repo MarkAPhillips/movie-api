@@ -41,7 +41,6 @@ describe('movieBuilder tests', () => {
       releaseDate: '2019-09-17',
       originalLanguage: 'en',
       popularity: 606.107,
-      imageUrl: 'https://image.tmdb.org/t/p/w154/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg',
       homePage: null,
       runTime: 93,
       genres: [],

@@ -99,7 +99,6 @@ type Movie {
     releaseDate: Date
     originalLanguage: String!
     popularity: Float!
-    imageUrl: String
     similar: [Movie!]
     recommended: [Movie!]
     credits: MovieCredits
