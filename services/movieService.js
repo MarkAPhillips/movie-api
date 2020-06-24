@@ -1,7 +1,13 @@
 import { BASE_URL } from '../constants';
+import getFeaturedMovieId from '../db/queries/movie';
 import creditBuilder from './builders/creditBuilder';
 import movieBuilder from './builders/movieBuilder';
 import certificationBuilder from './builders/certificationBuilder';
+
+export const getMovieById = async (imageSize, id) => {
+  const url = `${BASE_URL}/movie/${id}?`;
+  return movieBuilder(url, imageSize);
+};
 
 export const getTrending = async (imageSize, period = 'day') => {
   const url = `${BASE_URL}/trending/movie/${period}?`;
@@ -13,9 +19,9 @@ export const getPopular = async (imageSize) => {
   return movieBuilder(url, imageSize);
 };
 
-export const getMovieById = async (imageSize, id) => {
-  const url = `${BASE_URL}/movie/${id}?`;
-  return movieBuilder(url, imageSize);
+export const getFeatured = async (imageSize) => {
+  const id = await getFeaturedMovieId();
+  return getMovieById(imageSize, id);
 };
 
 export const getSimilar = async (id) => {
