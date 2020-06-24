@@ -6,11 +6,14 @@ import {
   getRecommended,
   getCertifications,
   getMovieCredits,
+  getFeatured,
 } from '../../services/movieService';
 
 export const trending = async (root, { imageSize, period }) => getTrending(imageSize, period);
 
 export const popular = async (root, { imageSize }) => getPopular(imageSize);
+
+export const featured = async (root, { imageSize }) => getFeatured(imageSize);
 
 export const movie = async (root, { imageSize, id }) => getMovieById(imageSize, id);
 
