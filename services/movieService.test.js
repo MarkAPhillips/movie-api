@@ -60,8 +60,8 @@ describe('movieService tests', () => {
   });
 
   it('should verify creditBuilder is called with the correct params for getMovieCredits', async () => {
-    getMovieCredits(1234);
-    expect(creditBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/credits?');
+    getMovieCredits(1234, 10);
+    expect(creditBuilder).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/1234/credits?', 10);
   });
 
   it('should verify certificationBuilder is called with the correct params for getCertifications', async () => {

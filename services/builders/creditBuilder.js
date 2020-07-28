@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import get from '../restService';
 import { buildPosterImage } from './imageBuilder';
+import size from '../../utils/size';
 
 const personMapper = (item, imageUrl) => ({
   id: item.id,
@@ -29,11 +30,11 @@ const castMapper = async (cast) => {
   return output;
 };
 
-const creditBuilder = async (url) => {
+const creditBuilder = async (url, limit) => {
   const data = await get(url);
   const { cast, crew } = data;
-  const mappedCast = castMapper(cast);
-  const mappedCrew = crew ? crewMapper(crew) : [];
+  const mappedCast = castMapper(size(cast, limit));
+  const mappedCrew = crew ? crewMapper(size(crew, limit)) : [];
   return { crew: mappedCrew, cast: mappedCast };
 };
 

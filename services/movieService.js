@@ -34,9 +34,9 @@ export const getRecommended = async (id) => {
   return movieBuilder(url);
 };
 
-export const getMovieCredits = async (id) => {
+export const getMovieCredits = async (id, creditsLimit) => {
   const url = `${BASE_URL}/movie/${id}/credits?`;
-  return creditBuilder(url);
+  return creditBuilder(url, creditsLimit);
 };
 
 export const getCertifications = async (id) => {
