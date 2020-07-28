@@ -31,7 +31,8 @@ getMovieCredits.mockImplementation(() => Promise.resolve(mockData));
 
 describe('movies tests', () => {
   it('should return a list of cast members for a movie', async () => {
-    const movies = await credits({ id: 23587, creditsLimit: 10 });
+    const movies = await credits({ id: 23587 },
+      null, null, { variableValues: { creditsLimit: 10 } });
     expect(getMovieCredits).toHaveBeenCalledWith(23587, 10);
     expect(movies).toEqual(mockData);
   });
