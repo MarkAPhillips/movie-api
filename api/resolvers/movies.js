@@ -35,8 +35,9 @@ export const certifications = async (root) => {
   return getCertifications(id);
 };
 
-export const credits = async (root) => {
+export const credits = async (root, args, context, info) => {
   if (!root.id) return null;
   const { id } = root;
-  return getMovieCredits(id);
+  const { creditsLimit } = info.variableValues;
+  return getMovieCredits(id, creditsLimit);
 };

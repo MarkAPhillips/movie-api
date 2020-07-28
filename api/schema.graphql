@@ -120,6 +120,6 @@ type Query {
     trending(imageSize: String = "original", period: TrendingPeriod = day): [Movie!]!
     popular(imageSize: String = "original"): [Movie!]!
     featured(imageSize: String = "original"): Movie!
-    movie(imageSize: String = "original", id: Int!, showCast: Boolean = true): Movie!
+    movie(imageSize: String = "original", id: Int!, showCast: Boolean = true, creditsLimit: Int = 40): Movie!
     person(imageSize: String = "original", id: Int!): Person!
 }
