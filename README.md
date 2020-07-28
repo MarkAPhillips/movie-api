@@ -133,7 +133,7 @@ query {
 
 ```
  query {
-    movie(id: 545609, showCast: $showCast) {
+    movie(id: 545609, showCast: $showCast, creditsLimit:$creditsLimit) {
       id
       title
       overview
@@ -182,6 +182,11 @@ query {
     }
   }
 ```
+
+*creditslimit* restricts the limit for cast and crew members returned. Currently defaults to 100.
+
+*showCast* defines if cast should be returned in the query.
+
 
 6. [Get a Person By Id](https://developers.themoviedb.org/3/people/get-person-details)
 
